@@ -23,15 +23,7 @@
 @synthesize speed = _speed;
 @synthesize height = _height;
 @synthesize blurStyle = _blurStyle;
-
-+(VolumeBar*)sharedInstance { // sharedInstance keeps the same object between views, so no alloc/init in Tweak.xm
-  static dispatch_once_t p = 0;
-  __strong static id _sharedObject = nil;
-  dispatch_once(&p, ^{
-    _sharedObject = [[self alloc] init];
-  });
-  return _sharedObject;
-}
+@synthesize completion = _completion;
 
 -(void)swipeHandler:(UITapGestureRecognizer *)gestureRecognizer { // stops hide timer and calls hideHUD when swiped
   HBLogDebug(@"swipeHandler called");
@@ -242,18 +234,6 @@
   [self adjustViewsForOrientation:[[UIDevice currentDevice] orientation] animated:NO];
   [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
   [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(orientationChanged:) name:UIDeviceOrientationDidChangeNotification object:[UIDevice currentDevice]];
-
-  _alive = YES;
-}
-
--(void)destroyHUD { // release all allocated objects when done with banner
-  HBLogDebug(@"destroyHUD called");
-  [volumeSlider release];
-  [swipeRecognizer release];
-  [handle release];
-  [mainView release];
-  [topWindow release];
-  _alive = NO;
 }
 
 -(void)showHUD { // animate banner in, set up gestures to work
@@ -279,7 +259,7 @@
   }
 }
 
--(void)hideHUD { // animate gestures out, remove gestures, call destroyHUD
+-(void)hideHUD { // animate gestures out, remove gestures
   HBLogDebug(@"hideHUD called");
   if(_slide && !_statusBar) {
     [handle removeGestureRecognizer:swipeRecognizer];
@@ -298,7 +278,12 @@
 	      topWindow.hidden = YES;
 	      [[NSNotificationCenter defaultCenter] removeObserver:self name:@"AVSystemController_SystemVolumeDidChangeNotification" object:nil];
         [[NSNotificationCenter defaultCenter] removeObserver:self name:UIDeviceOrientationDidChangeNotification object:[UIDevice currentDevice]];
-	      [self destroyHUD];
+        if(_completion) {
+          HBLogDebug(@"------");
+          HBLogDebug(@"About to call _completion(): %@", _completion);
+          HBLogDebug(@"------");
+          _completion();
+        }
 	    }
     ];
   } else {
@@ -307,19 +292,32 @@
     topWindow.hidden = YES;
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"AVSystemController_SystemVolumeDidChangeNotification" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIDeviceOrientationDidChangeNotification object:[UIDevice currentDevice]];
-    [self destroyHUD];
+    if(_completion) {
+      HBLogDebug(@"------");
+      HBLogDebug(@"About to call _completion(): %@", _completion);
+      HBLogDebug(@"------");
+      _completion();
+    }
   }
+}
+
+-(void)dealloc {
+  [volumeSlider release];
+  [ringerSlider release];
+  [swipeRecognizer release];
+  [handle release];
+  [mainView release];
+  [topWindow release];
+  [super dealloc];
 }
 
 -(void)loadHUDWithView:(id)view { // only method called from Tweak.xm, calls all other methods for setup and hiding
   HBLogDebug(@"loadHUDWithView called with view: %@", view);
-  if(!_alive) {
-    _view = view;
-    [self createHUD];
-    [self showHUD];
+  _view = view;
+  [self createHUD];
+  [self showHUD];
 
-    [self performSelector:@selector(hideHUD) withObject:nil afterDelay:_delayTime];
-  }
+  [self performSelector:@selector(hideHUD) withObject:nil afterDelay:_delayTime];
 }
 
 @end

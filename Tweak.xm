@@ -8,6 +8,7 @@
 
 #import "Tweak.h"
 
+BOOL active;
 BOOL enabled;
 BOOL animate;
 BOOL userInteraction;
@@ -91,21 +92,29 @@ static void preferenceUpdate(CFNotificationCenterRef center, void *observer, CFS
 -(void)presentVolumeBarWithView:(id)view {
   HBLogDebug(@"Volume view succesfully hooked");
   // TODO: pass in prefs as dictionary and handle defaults some other way
-  VolumeBar *vbar = [VolumeBar sharedInstance];
-	vbar.color = color;
-	vbar.animate = animate;
-	vbar.userInteraction = userInteraction;
-	vbar.showRouteButton = showRouteButton;
-	vbar.blur = blur;
-	vbar.drop = drop;
-	vbar.statusBar = statusBar;
-	vbar.slide = slide;
-	vbar.label = label;
-	vbar.delayTime = delayTime;
-	vbar.speed = speed;
-	vbar.height = height;
-	vbar.blurStyle = blurStyle;
-	[vbar loadHUDWithView:view];
+  if(!active) {
+    active = true;
+    VolumeBar *vbar = [[VolumeBar alloc] init];
+  	vbar.color = color;
+  	vbar.animate = animate;
+  	vbar.userInteraction = userInteraction;
+  	vbar.showRouteButton = showRouteButton;
+  	vbar.blur = blur;
+  	vbar.drop = drop;
+  	vbar.statusBar = statusBar;
+  	vbar.slide = slide;
+  	vbar.label = label;
+  	vbar.delayTime = delayTime;
+  	vbar.speed = speed;
+  	vbar.height = height;
+  	vbar.blurStyle = blurStyle;
+    vbar.completion = ^{
+      HBLogDebug(@"Completion block called");
+      [vbar release];
+      active = false;
+    };
+  	[vbar loadHUDWithView:view];
+  }
 }
 
 -(void)presentHUDView:(id)view autoDismissWithDelay:(double)delay {

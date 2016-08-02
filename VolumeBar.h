@@ -17,6 +17,8 @@
 #import <Celestial/AVSystemController.h>
 #include <tgmath.h>
 
+typedef void(^CompletionBlock)(void);
+
 @interface VolumeBar : NSObject {
 	UIWindow *topWindow;
 	UIView *mainView;
@@ -45,7 +47,6 @@
 	CGPoint windowCenter;
 	CGAffineTransform transform;
 
-	BOOL _alive;
 	id _view;
 }
 
@@ -62,8 +63,8 @@
 @property (nonatomic) double height;
 @property (nonatomic) int blurStyle;
 @property (nonatomic, strong) UIColor *color;
+@property (nonatomic, strong) CompletionBlock completion;
 
-+(VolumeBar*)sharedInstance;
 -(void)swipeHandler:(UISwipeGestureRecognizer *)recognizer;
 -(void)ringerSliderAction:(id)sender;
 -(void)ringerChanged:(NSNotification *)notification;
@@ -71,7 +72,6 @@
 -(void)orientationChanged:(NSNotification *)notification;
 -(void)calculateRender;
 -(void)createHUD;
--(void)destroyHUD;
 -(void)showHUD;
 -(void)hideHUD;
 -(void)loadHUDWithView:(id)view;

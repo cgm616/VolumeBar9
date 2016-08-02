@@ -11,6 +11,8 @@
 #import <UIKit/UIKit.h>
 #import "VolumeBar.h"
 
+typedef void(^CompletionBlock)(void);
+
 @interface SBHUDController
 
 -(void)presentVolumeBarWithView:(id)view;
