@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>items</key>
+	<array>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>defaults</key>
+			<string>me.cgm616.volumebar9</string>
+			<key>key</key>
+			<string>animation</string>
+			<key>label</key>
+			<string>Animate Banner</string>
+			<key>default</key>
+			<true/>
+			<key>PostNotification</key>
+			<string>me.cgm616.volumebar9/preferences.changed</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>defaults</key>
+			<string>me.cgm616.volumebar9</string>
+			<key>key</key>
+			<string>interaction</string>
+			<key>label</key>
+			<string>Allow Slider Interaction</string>
+			<key>default</key>
+			<true/>
+			<key>PostNotification</key>
+			<string>me.cgm616.volumebar9/preferences.changed</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>Time Shown On Screen</string>
+			<key>footerText</key>
+			<string>The time the banner will be shown on the screen, in seconds.</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSliderCell</string>
+			<key>defaults</key>
+			<string>me.cgm616.volumebar9</string>
+			<key>key</key>
+			<string>timeon</string>
+			<key>default</key>
+			<string>5.0</string>
+			<key>isContinuous</key>
+			<true/>
+			<key>showValue</key>
+			<true/>
+			<key>min</key>
+			<string>1.0</string>
+			<key>max</key>
+			<string>10.0</string>
+			<key>PostNotification</key>
+			<string>me.cgm616.volumebar9/preferences.changed</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>Speed of Animation</string>
+			<key>footerText</key>
+			<string>How long the animation takes, in seconds.</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSliderCell</string>
+			<key>defaults</key>
+			<string>me.cgm616.volumebar9</string>
+			<key>key</key>
+			<string>animatetime</string>
+			<key>default</key>
+			<string>0.2</string>
+			<key>isContinuous</key>
+			<true/>
+			<key>showValue</key>
+			<true/>
+			<key>min</key>
+			<string>0.01</string>
+			<key>max</key>
+			<string>1.0</string>
+			<key>PostNotification</key>
+			<string>me.cgm616.volumebar9/preferences.changed</string>
+		</dict>
+	</array>
+  <key>title</key>
+  <string>Animation Settings</string>
+</dict>
+</plist>

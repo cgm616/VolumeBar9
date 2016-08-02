@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>items</key>
+	<array>
+		<dict>
+      <key>cell</key>
+      <string>PSGroupCell</string>
+			<key>label</key>
+			<string>About this Package</string>
+      <key>footerText</key>
+      <string>This package is open source, and licensed under the MIT license.  The MIT license can be read on the package's GitHub repository.  This means that the code is able to be re-used in other projects.  If you are planning on developing a tweak, check it out! I mean, my code isn't that bad.</string>
+    </dict>
+		<dict>
+			<key>action</key>
+			<string>githubButton:</string>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>icon</key>
+			<string>github.png</string>
+			<key>label</key>
+			<string>cgm616/VolumeBar9 on GitHub</string>
+		</dict>
+	</array>
+  <key>title</key>
+  <string>About</string>
+</dict>
+</plist>

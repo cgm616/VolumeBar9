@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>items</key>
+	<array>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>Developer</string>
+			<key>footerText</key>
+			<string>Uhh, this is me. Thanks, me. I guess.</string>
+		</dict>
+		<dict>
+			<key>action</key>
+			<string>twitterButton:</string>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>icon</key>
+			<string>twitter.png</string>
+			<key>label</key>
+			<string>@cgm616</string>
+		</dict>
+		<dict>
+			<key>action</key>
+			<string>githubButton:</string>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>icon</key>
+			<string>github.png</string>
+			<key>label</key>
+			<string>cgm616 on GitHub</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>Designer</string>
+			<key>footerText</key>
+			<string>I love the icon!  Thanks Stijn for the awesome design.</string>
+		</dict>
+		<dict>
+			<key>action</key>
+			<string>twitterButton:</string>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>icon</key>
+			<string>twitter.png</string>
+			<key>label</key>
+			<string>@stijn_d3sign</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>General Help</string>
+			<key>footerText</key>
+			<string>Thank-you to bolencki13, who has really helped me with this package.  Without him, I would still be stuck on what a sharedInstance is.  I also want to thank uroboro, for helping me many times on IRC.  You've been very patient.</string>
+		</dict>
+		<dict>
+			<key>action</key>
+			<string>twitterButton:</string>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>icon</key>
+			<string>twitter.png</string>
+			<key>label</key>
+			<string>@bolencki13</string>
+		</dict>
+		<dict>
+			<key>action</key>
+			<string>twitterButton:</string>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>icon</key>
+			<string>twitter.png</string>
+			<key>label</key>
+			<string>@uroboro845</string>
+		</dict>
+	</array>
+  <key>title</key>
+  <string>Credits</string>
+</dict>
+</plist>

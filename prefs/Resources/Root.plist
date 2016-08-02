@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>items</key>
+	<array>
+    <dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>footerCellClass</key>
+			<string>VB9TitleCell</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+		</dict>
+    <dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>footerText</key>
+			<string>Respring the device after every change before using the volume buttons, or the device will crash.</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>defaults</key>
+			<string>me.cgm616.volumebar9</string>
+			<key>key</key>
+			<string>enabled</string>
+			<key>label</key>
+			<string>Enable</string>
+			<key>default</key>
+			<true/>
+			<key>PostNotification</key>
+			<string>me.cgm616.volumebar9/preferences.changed</string>
+		</dict>
+    <dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>footerText</key>
+      <string>© Copyright 2015-2016 cgm616</string>
+		</dict>
+		<dict>
+      <key>cell</key>
+      <string>PSLinkCell</string>
+	    <key>isController</key>
+	    <string>1</string>
+	    <key>label</key>
+	    <string>Banner Settings</string>
+	    <key>icon</key>
+      <string></string>
+	    <key>detail</key>
+	    <string>VB9ChildBannerListController</string>
+    </dict>
+		<dict>
+      <key>cell</key>
+      <string>PSLinkCell</string>
+	    <key>isController</key>
+	    <string>1</string>
+	    <key>label</key>
+	    <string>Animation Settings</string>
+	    <key>icon</key>
+      <string></string>
+	    <key>detail</key>
+	    <string>VB9ChildAnimateListController</string>
+    </dict>
+		<dict>
+      <key>cell</key>
+      <string>PSLinkCell</string>
+	    <key>isController</key>
+	    <string>1</string>
+	    <key>label</key>
+	    <string>Credits</string>
+	    <key>icon</key>
+      <string></string>
+	    <key>detail</key>
+	    <string>VB9ChildCreditListController</string>
+    </dict>
+		<dict>
+      <key>cell</key>
+      <string>PSLinkCell</string>
+	    <key>isController</key>
+	    <string>1</string>
+	    <key>label</key>
+	    <string>About</string>
+	    <key>icon</key>
+      <string></string>
+	    <key>detail</key>
+	    <string>VB9ChildAboutListController</string>
+    </dict>
+	</array>
+	<key>title</key>
+	<string>VolumeBar9</string>
+</dict>
+</plist>
