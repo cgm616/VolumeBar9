@@ -55,6 +55,7 @@
 }
 
 -(void)ringerChanged:(NSNotification *)notification { // handles changing slider value when buttons pressed with ringer
+  // TODO: don't update slider value while finger is dragging
   HBLogDebug(@"ringerChanged called");
   NSDictionary *dict = notification.userInfo;
   float value = [[dict objectForKey:@"AVSystemController_AudioVolumeNotificationParameter"] floatValue];
