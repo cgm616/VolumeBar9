@@ -24,7 +24,6 @@ static BOOL settingsChanged;
 -(void)respring {
   // TODO: make tweak not require respring
   HBLogDebug(@"respringing");
-  [[NSClassFromString(@"FBSystemService") sharedInstance] exitAndRelaunch:YES];
 }
 
 -(void)setPreferenceValue:(id)value specifier:(PSSpecifier *)spec {
