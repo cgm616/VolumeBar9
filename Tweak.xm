@@ -8,21 +8,21 @@
 
 #import "Tweak.h"
 
-BOOL active;
-BOOL enabled;
-BOOL animate;
-BOOL userInteraction;
-BOOL showRouteButton;
-BOOL blur;
-BOOL drop;
-BOOL statusBar;
-BOOL slide;
-BOOL label;
-double delayTime;
-double speed;
-double height;
-int blurStyle;
-UIColor *color;
+static BOOL active;
+static BOOL enabled;
+static BOOL animate;
+static BOOL userInteraction;
+static BOOL showRouteButton;
+static BOOL blur;
+static BOOL drop;
+static BOOL statusBar;
+static BOOL slide;
+static BOOL label;
+static double delayTime;
+static double speed;
+static double height;
+static int blurStyle;
+static UIColor *color;
 
 static void preferenceUpdate(CFNotificationCenterRef center, void *observer, CFStringRef name, const void *object, CFDictionaryRef userInfo) {
 	CFStringRef appID = CFSTR("me.cgm616.volumebar9");
@@ -81,7 +81,7 @@ static void preferenceUpdate(CFNotificationCenterRef center, void *observer, CFS
   key = preferences[@"blurstyle"];
   blurStyle = key ? [key intValue] : 2;
 
-	color = LCPParseColorString([preferences objectForKey:@"bannercolor"], @"#FFFFFF");
+	color = [LCPParseColorString([preferences objectForKey:@"bannercolor"], @"#FFFFFF") retain];
 
 	[preferences release];
 }
@@ -138,4 +138,8 @@ static void preferenceUpdate(CFNotificationCenterRef center, void *observer, CFS
 %ctor {
   preferenceUpdate(nil,nil,nil,nil,nil);
   CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, (CFNotificationCallback)preferenceUpdate, CFSTR("me.cgm616.volumebar9/preferences.changed"), NULL, CFNotificationSuspensionBehaviorCoalesce);
+}
+
+%dtor {
+  [color release];
 }

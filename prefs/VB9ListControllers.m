@@ -8,9 +8,6 @@
 
 #include "VB9ListControllers.h"
 
-extern char **environ;
-static BOOL settingsChanged;
-
 @implementation VB9RootListController
 
 -(NSArray *)specifiers {
@@ -20,39 +17,6 @@ static BOOL settingsChanged;
 
 	return _specifiers;
 }
-
--(void)respring {
-  // TODO: make tweak not require respring
-  HBLogDebug(@"respringing");
-}
-
--(void)setPreferenceValue:(id)value specifier:(PSSpecifier *)spec {
-	[super setPreferenceValue:value specifier:spec];
-	if (!settingsChanged) {
-		settingsChanged = YES;
-    [self settingsChanged];
-	}
-}
-
--(void)viewWillAppear:(BOOL)animated {
-  [super viewWillAppear:animated];
-
-	if(settingsChanged) {
-		[self settingsChanged];
-	}
-}
-
--(void)viewDidAppear:(BOOL)animated {
-  [super viewDidAppear:animated];
-}
-
--(void)settingsChanged {
-  HBLogDebug(@"Settings changed, button would change here")
-  UIBarButtonItem *respringButton = ([[UIBarButtonItem alloc] initWithTitle:@"Respring" style:UIBarButtonItemStyleDone target:self action:@selector(respring)]);
-  [[self navigationItem] setLeftBarButtonItem:respringButton];
-  [respringButton release];
-}
-
 
 @end
 
@@ -85,13 +49,6 @@ static BOOL settingsChanged;
 
   else
 		[[UIApplication sharedApplication] openURL:[NSURL URLWithString:[@"https://mobile.twitter.com/" stringByAppendingString:user]]];
-}
-
--(void)setPreferenceValue:(id)value specifier:(PSSpecifier *)spec {
-	[super setPreferenceValue:value specifier:spec];
-	if (!settingsChanged) {
-		settingsChanged = YES;
-	}
 }
 
 @end
@@ -152,8 +109,6 @@ static BOOL settingsChanged;
 
       CFPreferencesSetAppValue(CFSTR("bannercolor"), hexString, CFSTR("me.cgm616.volumebar9"));
       CFNotificationCenterPostNotification(CFNotificationCenterGetDarwinNotifyCenter(), CFSTR("me.cgm616.volumebar9/preferences.changed"), NULL, NULL, false);
-
-      settingsChanged = YES;
     }
   ];
 }

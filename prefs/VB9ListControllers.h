@@ -9,7 +9,6 @@
 #import <Preferences/PSListController.h>
 #import <Preferences/PSSpecifier.h>
 #import <libcolorpicker.h>
-#import <UIKit/UIKit.h>
 #import <FrontBoard/FBSystemService.h>
 
 @interface VB9RootListController : PSListController
