@@ -11,6 +11,9 @@
 @implementation VolumeBar
 
 @synthesize color = _color;
+@synthesize sliderColorEnabled = _sliderColorEnabled;
+@synthesize maxColor = _maxColor;
+@synthesize minColor = _minColor;
 @synthesize animate = _animate;
 @synthesize userInteraction = _userInteraction;
 @synthesize showRouteButton = _showRouteButton;
@@ -195,6 +198,10 @@
     if(_statusBar) { // add no thumb image
       [ringerSlider setThumbImage:thumbImage forState:UIControlStateNormal];
     }
+    if(_sliderColorEnabled) {
+      [ringerSlider setMinimumTrackTintColor:_minColor];
+      [ringerSlider setMaximumTrackTintColor:_maxColor];
+    }
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ringerChanged:) name:@"AVSystemController_SystemVolumeDidChangeNotification" object:nil];
     [mainView addSubview:ringerSlider];
   } else {
@@ -204,6 +211,13 @@
     volumeSlider.showsRouteButton = (_showRouteButton && !_statusBar);
     if(_statusBar) { // add no thumb image
       [volumeSlider setVolumeThumbImage:thumbImage forState:UIControlStateNormal];
+    }
+    if(_sliderColorEnabled) {
+      [[UISlider appearanceWhenContainedInInstancesOfClasses:@[[GMPVolumeView class]]] setMinimumTrackTintColor:_minColor];
+      [[UISlider appearanceWhenContainedInInstancesOfClasses:@[[GMPVolumeView class]]] setMaximumTrackTintColor:_maxColor];
+    } else {
+      [[UISlider appearanceWhenContainedInInstancesOfClasses:@[[GMPVolumeView class]]] setMinimumTrackTintColor:nil];
+      [[UISlider appearanceWhenContainedInInstancesOfClasses:@[[GMPVolumeView class]]] setMaximumTrackTintColor:nil];
     }
     [mainView addSubview:volumeSlider];
   }

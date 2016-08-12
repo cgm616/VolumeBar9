@@ -91,8 +91,8 @@
 	return _specifiers;
 }
 
--(void)libColorPicker {
-  CFPropertyListRef color = CFPreferencesCopyAppValue(CFSTR("bannercolor"), CFSTR("me.cgm616.volumebar9"));
+-(void)colorPicker {
+  CFPropertyListRef color = CFPreferencesCopyAppValue(CFSTR("color"), CFSTR("me.cgm616.volumebar9"));
 
   if(!color) {
     HBLogError(@"Error getting color value from prefs, using fallback");
@@ -107,7 +107,51 @@
       NSString *hexString = [UIColor hexFromColor:pickedColor];
       hexString = [hexString stringByAppendingFormat:@":%g", pickedColor.alpha];
 
-      CFPreferencesSetAppValue(CFSTR("bannercolor"), hexString, CFSTR("me.cgm616.volumebar9"));
+      CFPreferencesSetAppValue(CFSTR("color"), hexString, CFSTR("me.cgm616.volumebar9"));
+      CFNotificationCenterPostNotification(CFNotificationCenterGetDarwinNotifyCenter(), CFSTR("me.cgm616.volumebar9/preferences.changed"), NULL, NULL, false);
+    }
+  ];
+}
+
+-(void)minColorPicker {
+  CFPropertyListRef color = CFPreferencesCopyAppValue(CFSTR("mincolor"), CFSTR("me.cgm616.volumebar9"));
+
+  if(!color) {
+    HBLogError(@"Error getting color value from prefs, using fallback");
+  }
+
+  UIColor *startColor = LCPParseColorString((NSString*)color, @"#FFFFFF");
+
+  PFColorAlert *alert = [PFColorAlert colorAlertWithStartColor:startColor showAlpha:YES];
+
+  [alert displayWithCompletion:
+    ^void (UIColor *pickedColor){
+      NSString *hexString = [UIColor hexFromColor:pickedColor];
+      hexString = [hexString stringByAppendingFormat:@":%g", pickedColor.alpha];
+
+      CFPreferencesSetAppValue(CFSTR("mincolor"), hexString, CFSTR("me.cgm616.volumebar9"));
+      CFNotificationCenterPostNotification(CFNotificationCenterGetDarwinNotifyCenter(), CFSTR("me.cgm616.volumebar9/preferences.changed"), NULL, NULL, false);
+    }
+  ];
+}
+
+-(void)maxColorPicker {
+  CFPropertyListRef color = CFPreferencesCopyAppValue(CFSTR("maxcolor"), CFSTR("me.cgm616.volumebar9"));
+
+  if(!color) {
+    HBLogError(@"Error getting color value from prefs, using fallback");
+  }
+
+  UIColor *startColor = LCPParseColorString((NSString*)color, @"#FFFFFF");
+
+  PFColorAlert *alert = [PFColorAlert colorAlertWithStartColor:startColor showAlpha:YES];
+
+  [alert displayWithCompletion:
+    ^void (UIColor *pickedColor){
+      NSString *hexString = [UIColor hexFromColor:pickedColor];
+      hexString = [hexString stringByAppendingFormat:@":%g", pickedColor.alpha];
+
+      CFPreferencesSetAppValue(CFSTR("maxcolor"), hexString, CFSTR("me.cgm616.volumebar9"));
       CFNotificationCenterPostNotification(CFNotificationCenterGetDarwinNotifyCenter(), CFSTR("me.cgm616.volumebar9/preferences.changed"), NULL, NULL, false);
     }
   ];

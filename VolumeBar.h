@@ -63,6 +63,9 @@ typedef void(^CompletionBlock)(void);
 @property (nonatomic) double height;
 @property (nonatomic) int blurStyle;
 @property (nonatomic, strong) UIColor *color;
+@property (nonatomic) BOOL sliderColorEnabled;
+@property (nonatomic, strong) UIColor *minColor;
+@property (nonatomic, strong) UIColor *maxColor;
 @property (nonatomic, strong) CompletionBlock completion;
 
 -(void)swipeHandler:(UISwipeGestureRecognizer *)recognizer;

@@ -23,6 +23,9 @@ static double speed;
 static double height;
 static int blurStyle;
 static UIColor *color;
+static UIColor *minColor;
+static UIColor *maxColor;
+static BOOL sliderColorEnabled;
 
 static void preferenceUpdate(CFNotificationCenterRef center, void *observer, CFStringRef name, const void *object, CFDictionaryRef userInfo) {
 	CFStringRef appID = CFSTR("me.cgm616.volumebar9");
@@ -81,7 +84,14 @@ static void preferenceUpdate(CFNotificationCenterRef center, void *observer, CFS
   key = preferences[@"blurstyle"];
   blurStyle = key ? [key intValue] : 2;
 
-	color = [LCPParseColorString([preferences objectForKey:@"bannercolor"], @"#FFFFFF") retain];
+  key = preferences[@"sliderColorEnabled"];
+  sliderColorEnabled = key ? [key boolValue] : 0;
+
+	color = [LCPParseColorString([preferences objectForKey:@"color"], @"#FFFFFF") retain];
+
+  maxColor = [LCPParseColorString([preferences objectForKey:@"maxcolor"], @"#FFFFFF") retain];
+
+  minColor = [LCPParseColorString([preferences objectForKey:@"mincolor"], @"#FFFFFF") retain];
 
 	[preferences release];
 }
@@ -96,6 +106,9 @@ static void preferenceUpdate(CFNotificationCenterRef center, void *observer, CFS
     active = true;
     VolumeBar *vbar = [[VolumeBar alloc] init];
   	vbar.color = color;
+    vbar.sliderColorEnabled = sliderColorEnabled;
+    vbar.minColor = minColor;
+    vbar.maxColor = maxColor;
   	vbar.animate = animate;
   	vbar.userInteraction = userInteraction;
   	vbar.showRouteButton = showRouteButton;
@@ -142,4 +155,6 @@ static void preferenceUpdate(CFNotificationCenterRef center, void *observer, CFS
 
 %dtor {
   [color release];
+  [minColor release];
+  [maxColor release];
 }

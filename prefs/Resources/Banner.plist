@@ -4,12 +4,13 @@
 <dict>
 	<key>items</key>
   <array>
+
 		<dict>
 			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>label</key>
-			<string>Color and Blur</string>
-			<key>footertext</key>
+			<string>Banner Color and Blur</string>
+			<key>footerText</key>
 			<string>When blur is enabled, the color setting does nothing.</string>
 		</dict>
 		<dict>
@@ -20,7 +21,7 @@
 			<key>key</key>
 			<string>blur</string>
 			<key>label</key>
-			<string>Use Blur instead Color</string>
+			<string>Use Blur Instead of Color</string>
 			<key>default</key>
 			<true/>
 			<key>PostNotification</key>
@@ -28,7 +29,7 @@
 		</dict>
 		<dict>
 			<key>action</key>
-			<string>libColorPicker</string>
+			<string>colorPicker</string>
 			<key>cell</key>
 			<string>PSLinkCell</string>
 			<key>label</key>
@@ -64,6 +65,46 @@
 			<key>PostNotification</key>
 			<string>me.cgm616.volumebar9/preferences.changed</string>
 		</dict>
+
+    <dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>Slider Color and Blur</string>
+			<key>footerText</key>
+			<string>Set custom colors for the track on the slider. Minimum is defaulted as blue and maximum is defaulted as grey.</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>defaults</key>
+			<string>me.cgm616.volumebar9</string>
+			<key>key</key>
+			<string>sliderColorEnabled</string>
+			<key>label</key>
+			<string>Use Custom Slider Colors</string>
+			<key>default</key>
+			<false/>
+			<key>PostNotification</key>
+			<string>me.cgm616.volumebar9/preferences.changed</string>
+		</dict>
+		<dict>
+			<key>action</key>
+			<string>minColorPicker</string>
+			<key>cell</key>
+			<string>PSLinkCell</string>
+			<key>label</key>
+			<string>Minimum Color</string>
+		</dict>
+    <dict>
+			<key>action</key>
+			<string>maxColorPicker</string>
+			<key>cell</key>
+			<string>PSLinkCell</string>
+			<key>label</key>
+			<string>Maximum Color</string>
+		</dict>
+
 		<dict>
 			<key>cell</key>
 			<string>PSGroupCell</string>
@@ -106,6 +147,7 @@
 			<key>PostNotification</key>
 			<string>me.cgm616.volumebar9/preferences.changed</string>
 		</dict>
+
 		<dict>
 			<key>cell</key>
 			<string>PSGroupCell</string>
@@ -168,6 +210,7 @@
 			<key>PostNotification</key>
 			<string>me.cgm616.volumebar9/preferences.changed</string>
 		</dict>
+
 	</array>
 	<key>title</key>
 	<string>Banner Settings</string>
