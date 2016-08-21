@@ -28,6 +28,15 @@
 @synthesize blurStyle = _blurStyle;
 @synthesize completion = _completion;
 
+-(void)resetTimer {
+  if(hide != nil) {
+    [hide invalidate];
+    hide = nil;
+  }
+
+  hide = [NSTimer scheduledTimerWithTimeInterval:_delayTime target:self selector:@selector(hideHUD) userInfo:nil repeats:NO];
+}
+
 -(void)swipeHandler:(UITapGestureRecognizer *)gestureRecognizer { // stops hide timer and calls hideHUD when swiped
   HBLogDebug(@"swipeHandler called");
   [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(hideHUD) object:nil];
@@ -322,6 +331,9 @@
   [handle release];
   [mainView release];
   [topWindow release];
+  if(hide != nil) {
+    hide = nil;
+  }
   [super dealloc];
 }
 
@@ -331,7 +343,9 @@
   [self createHUD];
   [self showHUD];
 
-  [self performSelector:@selector(hideHUD) withObject:nil afterDelay:_delayTime];
+  // [self performSelector:@selector(hideHUD) withObject:nil afterDelay:_delayTime];
+
+  hide = [NSTimer scheduledTimerWithTimeInterval:_delayTime target:self selector:@selector(hideHUD) userInfo:nil repeats:NO];
 }
 
 @end

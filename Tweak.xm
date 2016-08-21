@@ -27,6 +27,8 @@ static UIColor *minColor;
 static UIColor *maxColor;
 static BOOL sliderColorEnabled;
 
+static VolumeBar *vbar = nil;
+
 static void preferenceUpdate(CFNotificationCenterRef center, void *observer, CFStringRef name, const void *object, CFDictionaryRef userInfo) {
 	CFStringRef appID = CFSTR("me.cgm616.volumebar9");
 	CFArrayRef keyList = CFPreferencesCopyKeyList(appID, kCFPreferencesCurrentUser, kCFPreferencesAnyHost);
@@ -104,7 +106,7 @@ static void preferenceUpdate(CFNotificationCenterRef center, void *observer, CFS
   // TODO: pass in prefs as dictionary and handle defaults some other way
   if(!active) {
     active = true;
-    VolumeBar *vbar = [[VolumeBar alloc] init];
+    vbar = [[VolumeBar alloc] init];
   	vbar.color = color;
     vbar.sliderColorEnabled = sliderColorEnabled;
     vbar.minColor = minColor;
@@ -124,9 +126,14 @@ static void preferenceUpdate(CFNotificationCenterRef center, void *observer, CFS
     vbar.completion = ^{
       HBLogDebug(@"Completion block called");
       [vbar release];
+      vbar = nil;
       active = false;
     };
   	[vbar loadHUDWithView:view];
+  } else {
+    if(vbar != nil) {
+      [vbar resetTimer];
+    }
   }
 }
 
@@ -144,6 +151,30 @@ static void preferenceUpdate(CFNotificationCenterRef center, void *observer, CFS
   } else {
     %orig;
   }
+}
+
+%end
+
+%hook VolumeControl
+
+-(void)_changeVolumeBy:(float)arg1 {
+  if(active && vbar != nil) {
+    [vbar resetTimer];
+  }
+
+  %orig;
+}
+
+%end
+
+%hook MPVolumeController
+
+-(float)setVolumeValue:(float)arg1 {
+  if(active && vbar != nil) {
+    [vbar resetTimer];
+  }
+
+  return %orig;
 }
 
 %end

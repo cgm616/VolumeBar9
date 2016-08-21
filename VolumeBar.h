@@ -29,6 +29,8 @@ typedef void(^CompletionBlock)(void);
 	UIImage *thumbImage;
 	UILabel *label;
 
+  NSTimer *hide;
+
 	GMPVolumeView *volumeSlider;
 	UISlider *ringerSlider;
   CGFloat screenWidth;
@@ -68,6 +70,7 @@ typedef void(^CompletionBlock)(void);
 @property (nonatomic, strong) UIColor *maxColor;
 @property (nonatomic, strong) CompletionBlock completion;
 
+-(void)resetTimer;
 -(void)swipeHandler:(UISwipeGestureRecognizer *)recognizer;
 -(void)ringerSliderAction:(id)sender;
 -(void)ringerChanged:(NSNotification *)notification;
