@@ -9,6 +9,9 @@
 #import <SpringBoard/SBHUDView.h>
 #import <libcolorpicker.h>
 #import <UIKit/UIKit.h>
+#import <SpringBoard/SpringBoard.h>
+#import <SpringBoard/SBApplication.h>
+#import <libobjcipc/objcipc.h>
 #import "VolumeBar.h"
 
 typedef void(^CompletionBlock)(void);
