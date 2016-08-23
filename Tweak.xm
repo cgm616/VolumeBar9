@@ -107,6 +107,23 @@ static void preferenceUpdate(CFNotificationCenterRef center, void *observer, CFS
   if(!active) {
     active = true;
     vbar = [[VolumeBar alloc] init];
+
+    NSString *appID = [(SpringBoard *)[UIApplication sharedApplication] _accessibilityFrontMostApplication].bundleIdentifier;
+
+    BOOL statusBarHidden;
+    UIInterfaceOrientation startOrientation;
+
+    if(appID) {
+      NSDictionary *reply = [OBJCIPC sendMessageToAppWithIdentifier:appID messageName:@"me.cgm616.volumebar9.showing" dictionary:nil];
+      statusBarHidden = [reply[@"statusBarHidden"] boolValue];
+      startOrientation = [reply[@"currentOrientation"] longLongValue];
+    } else {
+      UIStatusBar *statusBar = MSHookIvar<UIStatusBar *>([UIApplication sharedApplication], "_statusBar");
+      statusBarHidden = statusBar.hidden;
+      statusBar.hidden = YES;
+      startOrientation = [[UIApplication sharedApplication] statusBarOrientation];
+    }
+
   	vbar.color = color;
     vbar.sliderColorEnabled = sliderColorEnabled;
     vbar.minColor = minColor;
@@ -127,6 +144,12 @@ static void preferenceUpdate(CFNotificationCenterRef center, void *observer, CFS
       HBLogDebug(@"Completion block called");
       [vbar release];
       vbar = nil;
+      if(appID) {
+        [OBJCIPC sendMessageToAppWithIdentifier:appID messageName:@"me.cgm616.volumebar9.hiding" dictionary:@{ @"statusBarHidden": [NSNumber numberWithBool:statusBarHidden] } replyHandler:^(NSDictionary *response) {}];
+      } else {
+        UIStatusBar *statusBar = MSHookIvar<UIStatusBar *>([UIApplication sharedApplication], "_statusBar");
+        statusBar.hidden = statusBarHidden;
+      }
       active = false;
     };
   	[vbar loadHUDWithView:view];
