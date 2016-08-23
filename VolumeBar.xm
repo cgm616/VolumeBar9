@@ -343,8 +343,6 @@
   [self createHUD];
   [self showHUD];
 
-  // [self performSelector:@selector(hideHUD) withObject:nil afterDelay:_delayTime];
-
   hide = [NSTimer scheduledTimerWithTimeInterval:_delayTime target:self selector:@selector(hideHUD) userInfo:nil repeats:NO];
 }
 
