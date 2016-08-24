@@ -101,12 +101,22 @@ static void preferenceUpdate(CFNotificationCenterRef center, void *observer, CFS
 %hook SBHUDController
 
 %new(v@:);
+-(void)orientationChange:(NSNotification *)notification {
+  if(active && vbar != nil) {
+    HBLogDebug(@"adjusting view");
+    [vbar adjustViewsForOrientation:[[UIApplication sharedApplication] statusBarOrientation] animated:YES];
+  }
+}
+
+%new(v@:);
 -(void)presentVolumeBarWithView:(id)view {
   HBLogDebug(@"Volume view succesfully hooked");
   // TODO: pass in prefs as dictionary and handle defaults some other way
   if(!active) {
     active = true;
     vbar = [[VolumeBar alloc] init];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChange:) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
 
     NSString *appID = [(SpringBoard *)[UIApplication sharedApplication] _accessibilityFrontMostApplication].bundleIdentifier;
 
@@ -149,6 +159,7 @@ static void preferenceUpdate(CFNotificationCenterRef center, void *observer, CFS
         UIStatusBarForegroundView *view = MSHookIvar<UIStatusBarForegroundView *>(statusBar, "_foregroundView");
         view.hidden = NO;
       }
+      [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
       active = false;
     };
   	[vbar loadHUDView:view orientation:startOrientation];
@@ -209,7 +220,7 @@ static void preferenceUpdate(CFNotificationCenterRef center, void *observer, CFS
       HBLogDebug(@"adjusting view");
       [vbar adjustViewsForOrientation:[message[@"orientation"] longLongValue] animated:YES];
     }
-    
+
     return nil;
   }];
 

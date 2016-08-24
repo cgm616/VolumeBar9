@@ -19,6 +19,7 @@ typedef void(^CompletionBlock)(void);
 
 @interface SBHUDController
 
+-(void)orientationChange:(NSNotification *)notification;
 -(void)presentVolumeBarWithView:(id)view;
 
 @end
