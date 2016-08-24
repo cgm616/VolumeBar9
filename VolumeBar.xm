@@ -66,26 +66,33 @@
   [ringerSlider setValue:value animated:YES];
 }
 
--(void)adjustViewsForOrientation:(UIInterfaceOrientation)orientation animated:(BOOL)animateOrient{
+-(void)adjustViewsForOrientation:(UIInterfaceOrientation)orientation animated:(BOOL)animateOrient {
+  CGPoint windowCenter;
+  CGAffineTransform transform;
+  CGRect bounds = topWindow.bounds;
+
   switch (orientation) {
     case UIInterfaceOrientationPortraitUpsideDown:
     {
       HBLogDebug(@"Portrait upside down");
       transform = CGAffineTransformMakeRotation(M_PI);
-      windowCenter = CGPointMake(bannerWidth / 2, screenHeight - (bannerHeight / 2));
+      bounds.size.width = screenWidth;
+      windowCenter = CGPointMake(screenWidth / 2, screenHeight - (bannerHeight / 2));
     } break;
 
     case UIInterfaceOrientationLandscapeLeft:
     {
       HBLogDebug(@"Landscape left");
       transform = CGAffineTransformMakeRotation(M_PI / -2);
+      bounds.size.width = screenHeight;
       windowCenter = CGPointMake(bannerHeight / 2, screenHeight / 2);
-    }break;
+    } break;
 
     case UIInterfaceOrientationLandscapeRight:
     {
       HBLogDebug(@"Landscape right");
       transform = CGAffineTransformMakeRotation(M_PI / 2);
+      bounds.size.width = screenHeight;
       windowCenter = CGPointMake(screenWidth - (bannerHeight / 2), screenHeight / 2);
     } break;
 
@@ -95,23 +102,22 @@
     {
       HBLogDebug(@"Portrait, no change");
       transform = CGAffineTransformMakeRotation(0);
+      bounds.size.width = screenWidth;
       windowCenter = CGPointMake(screenWidth / 2, bannerHeight / 2);
-    }break;
+    } break;
   }
 
   if(animateOrient) {
     [UIView animateWithDuration:0.4 delay:0.0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
       [topWindow setTransform:transform];
+      topWindow.bounds = bounds;
       topWindow.center = windowCenter;
     } completion:nil];
   } else {
     [topWindow setTransform:transform];
+    topWindow.bounds = bounds;
     topWindow.center = windowCenter;
   }
-}
-
--(void)orientationChanged:(NSNotification *)notification {
-  [self adjustViewsForOrientation:[[notification object] orientation] animated:YES];
 }
 
 -(void)calculateRender { // does frame calculations and creates thumbImage
@@ -164,6 +170,7 @@
   mainView = [[UIView alloc] initWithFrame:CGRectMake(bannerX, bannerY, bannerWidth, bannerHeight)]; // top level view for everything else
   [mainView setBackgroundColor:_color];
   [mainView setUserInteractionEnabled:YES];
+  mainView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
   [topWindow addSubview:mainView];
 
   if(_drop) { // create drop shadow then add it to the mainView
@@ -185,6 +192,7 @@
     // [blurView setBlurHardEdges:2];
     // [blurView setBlursWithHardEdges:YES];
     [blurView setBlurQuality:@"default"];
+    blurView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     [mainView addSubview:blurView];
     [blurView release];
   }
@@ -212,6 +220,7 @@
       [ringerSlider setMaximumTrackTintColor:_maxColor];
     }
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ringerChanged:) name:@"AVSystemController_SystemVolumeDidChangeNotification" object:nil];
+    ringerSlider.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     [mainView addSubview:ringerSlider];
   } else {
     volumeSlider = [[GMPVolumeView alloc] initWithFrame:CGRectMake(sliderX, sliderY, sliderWidth, sliderHeight)];
@@ -228,6 +237,7 @@
       [[UISlider appearanceWhenContainedInInstancesOfClasses:@[[GMPVolumeView class]]] setMinimumTrackTintColor:nil];
       [[UISlider appearanceWhenContainedInInstancesOfClasses:@[[GMPVolumeView class]]] setMaximumTrackTintColor:nil];
     }
+    volumeSlider.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     [mainView addSubview:volumeSlider];
   }
 
@@ -253,10 +263,6 @@
   }
 
   mainView.frame = CGRectMake(bannerX, (-1 * bannerHeight) - 5, bannerWidth, bannerHeight); // hide frame for animation in
-
-  [self adjustViewsForOrientation:[[UIDevice currentDevice] orientation] animated:NO];
-  [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
-  [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(orientationChanged:) name:UIDeviceOrientationDidChangeNotification object:[UIDevice currentDevice]];
 }
 
 -(void)showHUD { // animate banner in, set up gestures to work
@@ -300,7 +306,6 @@
 	      [mainView removeFromSuperview];
 	      topWindow.hidden = YES;
 	      [[NSNotificationCenter defaultCenter] removeObserver:self name:@"AVSystemController_SystemVolumeDidChangeNotification" object:nil];
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:UIDeviceOrientationDidChangeNotification object:[UIDevice currentDevice]];
         if(_completion) {
           HBLogDebug(@"------");
           HBLogDebug(@"About to call _completion(): %@", _completion);
@@ -314,7 +319,6 @@
     [mainView removeFromSuperview];
     topWindow.hidden = YES;
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"AVSystemController_SystemVolumeDidChangeNotification" object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIDeviceOrientationDidChangeNotification object:[UIDevice currentDevice]];
     if(_completion) {
       HBLogDebug(@"------");
       HBLogDebug(@"About to call _completion(): %@", _completion);
@@ -337,11 +341,12 @@
   [super dealloc];
 }
 
--(void)loadHUDWithView:(id)view { // only method called from Tweak.xm, calls all other methods for setup and hiding
+-(void)loadHUDView:(id)view orientation:(UIInterfaceOrientation)orientation { // only method called from Tweak.xm, calls all other methods for setup and hiding
   HBLogDebug(@"loadHUDWithView called with view: %@", view);
   _view = view;
   [self createHUD];
   [self showHUD];
+  [self adjustViewsForOrientation:orientation animated:NO];
 
   hide = [NSTimer scheduledTimerWithTimeInterval:_delayTime target:self selector:@selector(hideHUD) userInfo:nil repeats:NO];
 }

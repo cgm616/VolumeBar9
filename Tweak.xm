@@ -151,7 +151,7 @@ static void preferenceUpdate(CFNotificationCenterRef center, void *observer, CFS
       }
       active = false;
     };
-  	[vbar loadHUDWithView:view];
+  	[vbar loadHUDView:view orientation:startOrientation];
   } else {
     if(vbar != nil) {
       [vbar resetTimer];
@@ -202,6 +202,17 @@ static void preferenceUpdate(CFNotificationCenterRef center, void *observer, CFS
 %end
 
 %ctor {
+  [OBJCIPC registerIncomingMessageFromAppHandlerForMessageName:@"me.cgm616.volumebar9.orientation"  handler:^NSDictionary *(NSDictionary *message) {
+    HBLogDebug(@"received orientation message");
+
+    if(active && vbar != nil) {
+      HBLogDebug(@"adjusting view");
+      [vbar adjustViewsForOrientation:[message[@"orientation"] longLongValue] animated:YES];
+    }
+    
+    return nil;
+  }];
+
   preferenceUpdate(nil,nil,nil,nil,nil);
   CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, (CFNotificationCallback)preferenceUpdate, CFSTR("me.cgm616.volumebar9/preferences.changed"), NULL, CFNotificationSuspensionBehaviorCoalesce);
 }

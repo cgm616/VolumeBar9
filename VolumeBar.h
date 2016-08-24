@@ -46,9 +46,6 @@ typedef void(^CompletionBlock)(void);
 	CGFloat sliderHeight;
 	CGFloat sliderY;
 
-	CGPoint windowCenter;
-	CGAffineTransform transform;
-
 	id _view;
 }
 
@@ -75,11 +72,10 @@ typedef void(^CompletionBlock)(void);
 -(void)ringerSliderAction:(id)sender;
 -(void)ringerChanged:(NSNotification *)notification;
 -(void)adjustViewsForOrientation:(UIInterfaceOrientation)orientation animated:(BOOL)animateOrient;
--(void)orientationChanged:(NSNotification *)notification;
 -(void)calculateRender;
 -(void)createHUD;
 -(void)showHUD;
 -(void)hideHUD;
--(void)loadHUDWithView:(id)view;
+-(void)loadHUDView:(id)view orientation:(UIInterfaceOrientation)orientation;
 
 @end
