@@ -38,13 +38,11 @@
 }
 
 -(void)swipeHandler:(UITapGestureRecognizer *)gestureRecognizer { // stops hide timer and calls hideHUD when swiped
-  HBLogDebug(@"swipeHandler called");
   [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(hideHUD) object:nil];
   [self hideHUD];
 }
 
 -(void)ringerSliderAction:(id)sender { // updates volume when ringer slider changed TODO: make less resource instensive
-  HBLogDebug(@"ringerSliderAction called");
   UISlider *slider = (UISlider*)sender;
 
   AVSystemController *controller = [NSClassFromString(@"AVSystemController") sharedAVSystemController];
@@ -60,7 +58,6 @@
 
 -(void)ringerChanged:(NSNotification *)notification { // handles changing slider value when buttons pressed with ringer
   // TODO: don't update slider value while finger is dragging
-  HBLogDebug(@"ringerChanged called");
   NSDictionary *dict = notification.userInfo;
   float value = [[dict objectForKey:@"AVSystemController_AudioVolumeNotificationParameter"] floatValue];
   [ringerSlider setValue:value animated:YES];
@@ -74,7 +71,6 @@
   switch (orientation) {
     case UIInterfaceOrientationPortraitUpsideDown:
     {
-      HBLogDebug(@"Portrait upside down");
       transform = CGAffineTransformMakeRotation(M_PI);
       bounds.size.width = screenWidth;
       windowCenter = CGPointMake(screenWidth / 2, screenHeight - (bannerHeight / 2));
@@ -82,7 +78,6 @@
 
     case UIInterfaceOrientationLandscapeLeft:
     {
-      HBLogDebug(@"Landscape left");
       transform = CGAffineTransformMakeRotation(M_PI / -2);
       bounds.size.width = screenHeight;
       windowCenter = CGPointMake(bannerHeight / 2, screenHeight / 2);
@@ -90,7 +85,6 @@
 
     case UIInterfaceOrientationLandscapeRight:
     {
-      HBLogDebug(@"Landscape right");
       transform = CGAffineTransformMakeRotation(M_PI / 2);
       bounds.size.width = screenHeight;
       windowCenter = CGPointMake(screenWidth - (bannerHeight / 2), screenHeight / 2);
@@ -100,7 +94,6 @@
     case UIInterfaceOrientationPortrait:
     default:
     {
-      HBLogDebug(@"Portrait, no change");
       transform = CGAffineTransformMakeRotation(0);
       bounds.size.width = screenWidth;
       windowCenter = CGPointMake(screenWidth / 2, bannerHeight / 2);
@@ -121,7 +114,6 @@
 }
 
 -(void)calculateRender { // does frame calculations and creates thumbImage
-  HBLogDebug(@"calculateRender called");
   CGRect screenRect = [[UIScreen mainScreen] bounds];
   screenWidth = screenRect.size.width;
   screenHeight = screenRect.size.height;
@@ -157,7 +149,6 @@
 }
 
 -(void)createHUD { // creates view heirarchy
-  HBLogDebug(@"createHUD called");
   [self calculateRender];
 
   topWindow = [[UIWindow alloc] initWithFrame:CGRectMake(bannerX, bannerY, bannerWidth, bannerHeight)]; // window to display on screen
@@ -266,7 +257,6 @@
 }
 
 -(void)showHUD { // animate banner in, set up gestures to work
-  HBLogDebug(@"showHUD called");
   topWindow.hidden = NO;
   if(_animate) {
     [UIView animateWithDuration:_speed
@@ -289,7 +279,6 @@
 }
 
 -(void)hideHUD { // animate gestures out, remove gestures
-  HBLogDebug(@"hideHUD called");
   if(_slide && !_statusBar) {
     [handle removeGestureRecognizer:swipeRecognizer];
     [mainView removeGestureRecognizer:swipeRecognizer];
@@ -307,9 +296,6 @@
 	      topWindow.hidden = YES;
 	      [[NSNotificationCenter defaultCenter] removeObserver:self name:@"AVSystemController_SystemVolumeDidChangeNotification" object:nil];
         if(_completion) {
-          HBLogDebug(@"------");
-          HBLogDebug(@"About to call _completion(): %@", _completion);
-          HBLogDebug(@"------");
           _completion();
         }
 	    }
@@ -320,9 +306,6 @@
     topWindow.hidden = YES;
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"AVSystemController_SystemVolumeDidChangeNotification" object:nil];
     if(_completion) {
-      HBLogDebug(@"------");
-      HBLogDebug(@"About to call _completion(): %@", _completion);
-      HBLogDebug(@"------");
       _completion();
     }
   }
@@ -342,7 +325,6 @@
 }
 
 -(void)loadHUDView:(id)view orientation:(UIInterfaceOrientation)orientation { // only method called from Tweak.xm, calls all other methods for setup and hiding
-  HBLogDebug(@"loadHUDWithView called with view: %@", view);
   _view = view;
   [self createHUD];
   [self showHUD];
