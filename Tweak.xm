@@ -110,17 +110,15 @@ static void preferenceUpdate(CFNotificationCenterRef center, void *observer, CFS
 
     NSString *appID = [(SpringBoard *)[UIApplication sharedApplication] _accessibilityFrontMostApplication].bundleIdentifier;
 
-    BOOL statusBarHidden;
     UIInterfaceOrientation startOrientation;
 
     if(appID) {
       NSDictionary *reply = [OBJCIPC sendMessageToAppWithIdentifier:appID messageName:@"me.cgm616.volumebar9.showing" dictionary:nil];
-      statusBarHidden = [reply[@"statusBarHidden"] boolValue];
       startOrientation = [reply[@"currentOrientation"] longLongValue];
     } else {
       UIStatusBar *statusBar = MSHookIvar<UIStatusBar *>([UIApplication sharedApplication], "_statusBar");
-      statusBarHidden = statusBar.hidden;
-      statusBar.hidden = YES;
+      UIStatusBarForegroundView *view = MSHookIvar<UIStatusBarForegroundView *>(statusBar, "_foregroundView");
+      view.hidden = YES;
       startOrientation = [[UIApplication sharedApplication] statusBarOrientation];
     }
 
@@ -145,10 +143,11 @@ static void preferenceUpdate(CFNotificationCenterRef center, void *observer, CFS
       [vbar release];
       vbar = nil;
       if(appID) {
-        [OBJCIPC sendMessageToAppWithIdentifier:appID messageName:@"me.cgm616.volumebar9.hiding" dictionary:@{ @"statusBarHidden": [NSNumber numberWithBool:statusBarHidden] } replyHandler:^(NSDictionary *response) {}];
+        [OBJCIPC sendMessageToAppWithIdentifier:appID messageName:@"me.cgm616.volumebar9.hiding" dictionary:@{} replyHandler:^(NSDictionary *response) {}];
       } else {
         UIStatusBar *statusBar = MSHookIvar<UIStatusBar *>([UIApplication sharedApplication], "_statusBar");
-        statusBar.hidden = statusBarHidden;
+        UIStatusBarForegroundView *view = MSHookIvar<UIStatusBarForegroundView *>(statusBar, "_foregroundView");
+        view.hidden = NO;
       }
       active = false;
     };

@@ -13,11 +13,10 @@
 -(id)init {
   [OBJCIPC registerIncomingMessageFromSpringBoardHandlerForMessageName:@"me.cgm616.volumebar9.showing" handler:^NSDictionary *(NSDictionary *message) {
     UIStatusBar *statusBar = MSHookIvar<UIStatusBar *>([UIApplication sharedApplication], "_statusBar");
-    BOOL status = statusBar.hidden;
-    statusBar.hidden = YES;
+    UIStatusBarForegroundView *view = MSHookIvar<UIStatusBarForegroundView *>(statusBar, "_foregroundView");
+    view.hidden = YES;
 
     NSDictionary *return_message = @{
-      @"statusBarHidden" : [NSNumber numberWithBool:status],
       @"currentOrientation" : [NSNumber numberWithLongLong:[[UIApplication sharedApplication] statusBarOrientation]],
     };
 
@@ -25,10 +24,9 @@
   }];
 
   [OBJCIPC registerIncomingMessageFromSpringBoardHandlerForMessageName:@"me.cgm616.volumebar9.hiding" handler:^NSDictionary *(NSDictionary *message) {
-	  BOOL previousStatus = [message[@"statusBarHidden"] boolValue];
-
     UIStatusBar *statusBar = MSHookIvar<UIStatusBar *>([UIApplication sharedApplication], "_statusBar");
-    statusBar.hidden = previousStatus;
+    UIStatusBarForegroundView *view = MSHookIvar<UIStatusBarForegroundView *>(statusBar, "_foregroundView");
+    view.hidden = NO;
 
 	  return nil;
   }];
