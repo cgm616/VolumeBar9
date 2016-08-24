@@ -35,10 +35,9 @@
 }
 
 -(void)setStatusBarOrientation:(UIInterfaceOrientation)orientation animationParameters:(id)arg2 notifySpringBoardAndFence:(BOOL)arg3 updateBlock:(id)arg4 {
-  %log;
-  %orig;
-
   [OBJCIPC sendMessageToSpringBoardWithMessageName:@"me.cgm616.volumebar9.orientation" dictionary:@{ @"orientation": [NSNumber numberWithLongLong:orientation] } replyHandler:^(NSDictionary *response) {}];
+
+  %orig;
 }
 
 %end
