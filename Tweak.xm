@@ -171,7 +171,7 @@ static void preferenceUpdate(CFNotificationCenterRef center, void *observer, CFS
 }
 
 -(void)presentHUDView:(id)view autoDismissWithDelay:(double)delay {
-  if([view isKindOfClass:objc_getClass("SBVolumeHUDView")]) {
+  if([view isKindOfClass:objc_getClass("SBVolumeHUDView")] && enabled) {
     [self presentVolumeBarWithView:view];
   } else {
     %orig;
@@ -179,7 +179,7 @@ static void preferenceUpdate(CFNotificationCenterRef center, void *observer, CFS
 }
 
 -(void)presentHUDView:(id)view {
-  if([view isKindOfClass:objc_getClass("SBVolumeHUDView")]) {
+  if([view isKindOfClass:objc_getClass("SBVolumeHUDView")] && enabled) {
     [self presentVolumeBarWithView:view];
   } else {
     %orig;
