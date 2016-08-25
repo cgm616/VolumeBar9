@@ -39,7 +39,11 @@
 
 -(void)swipeHandler:(UITapGestureRecognizer *)gestureRecognizer { // stops hide timer and calls hideHUD when swiped
   HBLogDebug(@"swipeHandler called");
-  [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(hideHUD) object:nil];
+  if(hide != nil) {
+    [hide invalidate];
+    hide = nil;
+  }
+  
   [self hideHUD];
 }
 
