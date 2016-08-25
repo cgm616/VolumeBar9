@@ -179,7 +179,7 @@ static void preferenceUpdate(CFNotificationCenterRef center, void *observer, CFS
 
 %hook VolumeControl
 
--(void)_changeVolumeBy:(float)arg1 {
+-(void)_changeVolumeBy:(CGFloat)arg1 {
   if(active && vbar != nil) {
     [vbar resetTimer];
   }
