@@ -78,6 +78,12 @@
 			<key>label</key>
 			<string>@uroboro845</string>
 		</dict>
+    <dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>footerText</key>
+			<string>The GitHub and Twitter icons were designed by Icomoon, and distributed online by Flaticon.</string>
+		</dict>
 	</array>
   <key>title</key>
   <string>Credits</string>
