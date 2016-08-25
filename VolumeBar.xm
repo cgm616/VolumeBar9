@@ -39,31 +39,12 @@
 
 -(void)swipeHandler:(UITapGestureRecognizer *)gestureRecognizer { // stops hide timer and calls hideHUD when swiped
   HBLogDebug(@"swipeHandler called");
-  [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(hideHUD) object:nil];
+  if(hide != nil) {
+    [hide invalidate];
+    hide = nil;
+  }
+
   [self hideHUD];
-}
-
--(void)ringerSliderAction:(id)sender { // updates volume when ringer slider changed TODO: make less resource instensive
-  HBLogDebug(@"ringerSliderAction called");
-  UISlider *slider = (UISlider*)sender;
-
-  AVSystemController *controller = [NSClassFromString(@"AVSystemController") sharedAVSystemController];
-  // CGFloat delta = slider.value - [controller getVolume:&oldVolume forCategory:@"Ringtone"];
-  [controller setVolumeTo:slider.value forCategory:@"Ringtone"];
-
-  /*
-  VolumeControl *volumeControl = [NSClassFromString(@"VolumeControl") sharedVolumeControl];
-  CGFloat delta = slider.value - [volumeControl volume];
-  [volumeControl _changeVolumeBy:delta];
-  */
-}
-
--(void)ringerChanged:(NSNotification *)notification { // handles changing slider value when buttons pressed with ringer
-  // TODO: don't update slider value while finger is dragging
-  HBLogDebug(@"ringerChanged called");
-  NSDictionary *dict = notification.userInfo;
-  float value = [[dict objectForKey:@"AVSystemController_AudioVolumeNotificationParameter"] floatValue];
-  [ringerSlider setValue:value animated:YES];
 }
 
 -(void)adjustViewsForOrientation:(UIInterfaceOrientation)orientation animated:(BOOL)animateOrient {
@@ -197,49 +178,29 @@
     [blurView release];
   }
 
-  if([_view mode] == 1) { // view mode 1 is ringer, 0 is player
-    ringerSlider = [[UISlider alloc] initWithFrame:CGRectMake(sliderX, sliderY, sliderWidth, sliderHeight)];
-    ringerSlider.continuous = YES;
-
-    CGFloat ringerVolume = 0;
-    AVSystemController *controller = [NSClassFromString(@"AVSystemController") sharedAVSystemController];
-    [controller getVolume:&ringerVolume forCategory:@"Ringtone"];
-    ringerSlider.value = ringerVolume;
-
-    //ringerSlider.value = [[NSClassFromString(@"VolumeControl") sharedVolumeControl] volume];
-    ringerSlider.minimumValue = 0;
-    ringerSlider.maximumValue = 1.0;
-    [ringerSlider addTarget:self action:@selector(ringerSliderAction:) forControlEvents:UIControlEventValueChanged];
-    [ringerSlider setBackgroundColor:[UIColor clearColor]];
-    [ringerSlider setUserInteractionEnabled:_userInteraction];
-    if(_statusBar) { // add no thumb image
-      [ringerSlider setThumbImage:thumbImage forState:UIControlStateNormal];
-    }
-    if(_sliderColorEnabled) {
-      [ringerSlider setMinimumTrackTintColor:_minColor];
-      [ringerSlider setMaximumTrackTintColor:_maxColor];
-    }
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ringerChanged:) name:@"AVSystemController_SystemVolumeDidChangeNotification" object:nil];
-    ringerSlider.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    [mainView addSubview:ringerSlider];
-  } else {
-    volumeSlider = [[GMPVolumeView alloc] initWithFrame:CGRectMake(sliderX, sliderY, sliderWidth, sliderHeight)];
-    [volumeSlider setBackgroundColor:[UIColor clearColor]];
-    [volumeSlider setUserInteractionEnabled:_userInteraction];
-    volumeSlider.showsRouteButton = (_showRouteButton && !_statusBar);
-    if(_statusBar) { // add no thumb image
-      [volumeSlider setVolumeThumbImage:thumbImage forState:UIControlStateNormal];
-    }
-    if(_sliderColorEnabled) {
-      [[UISlider appearanceWhenContainedInInstancesOfClasses:@[[GMPVolumeView class]]] setMinimumTrackTintColor:_minColor];
-      [[UISlider appearanceWhenContainedInInstancesOfClasses:@[[GMPVolumeView class]]] setMaximumTrackTintColor:_maxColor];
-    } else {
-      [[UISlider appearanceWhenContainedInInstancesOfClasses:@[[GMPVolumeView class]]] setMinimumTrackTintColor:nil];
-      [[UISlider appearanceWhenContainedInInstancesOfClasses:@[[GMPVolumeView class]]] setMaximumTrackTintColor:nil];
-    }
-    volumeSlider.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    [mainView addSubview:volumeSlider];
+  volumeSlider = [[GMPVolumeView alloc] initWithFrame:CGRectMake(sliderX, sliderY, sliderWidth, sliderHeight)];
+  [volumeSlider setBackgroundColor:[UIColor clearColor]];
+  [volumeSlider setUserInteractionEnabled:_userInteraction];
+  volumeSlider.showsRouteButton = (_showRouteButton && !_statusBar);
+  if(_statusBar) { // add no thumb image
+    [volumeSlider setVolumeThumbImage:thumbImage forState:UIControlStateNormal];
   }
+  if(_sliderColorEnabled) {
+    [[UISlider appearanceWhenContainedInInstancesOfClasses:@[[GMPVolumeView class]]] setMinimumTrackTintColor:_minColor];
+    [[UISlider appearanceWhenContainedInInstancesOfClasses:@[[GMPVolumeView class]]] setMaximumTrackTintColor:_maxColor];
+  } else {
+    [[UISlider appearanceWhenContainedInInstancesOfClasses:@[[GMPVolumeView class]]] setMinimumTrackTintColor:nil];
+    [[UISlider appearanceWhenContainedInInstancesOfClasses:@[[GMPVolumeView class]]] setMaximumTrackTintColor:nil];
+  }
+  volumeSlider.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+
+  if([_view mode] == 1) {
+    [[volumeSlider volumeSlider] setVolumeAudioCategory:@"Ringtone"];
+  } else {
+    [[volumeSlider volumeSlider] setVolumeAudioCategory:@"Audio/Video"];
+  }
+
+  [mainView addSubview:volumeSlider];
 
   if(_slide && !_statusBar) { // set up swipe handler and create handle view, add to mainView
     handle = [[UIView alloc] initWithFrame:CGRectMake((screenWidth / 2) - 16, bannerHeight - 10, 32, 8)];
@@ -330,7 +291,6 @@
 
 -(void)dealloc {
   [volumeSlider release];
-  [ringerSlider release];
   [swipeRecognizer release];
   [handle release];
   [mainView release];

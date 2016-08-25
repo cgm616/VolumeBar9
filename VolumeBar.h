@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import <CoreGraphics/CoreGraphics.h>
 #import <AudioToolbox/AudioToolbox.h>
-#import <MediaPlayer/MediaPlayer.h>
 #import "GMPVolumeView.h"
 #import <UIKit/_UIBackdropView.h>
 #import <UIKit/_UIBackdropViewSettings.h>
@@ -32,7 +31,6 @@ typedef void(^CompletionBlock)(void);
   NSTimer *hide;
 
 	GMPVolumeView *volumeSlider;
-	UISlider *ringerSlider;
   CGFloat screenWidth;
   CGFloat screenHeight;
 
@@ -69,8 +67,6 @@ typedef void(^CompletionBlock)(void);
 
 -(void)resetTimer;
 -(void)swipeHandler:(UISwipeGestureRecognizer *)recognizer;
--(void)ringerSliderAction:(id)sender;
--(void)ringerChanged:(NSNotification *)notification;
 -(void)adjustViewsForOrientation:(UIInterfaceOrientation)orientation animated:(BOOL)animateOrient;
 -(void)calculateRender;
 -(void)createHUD;
