@@ -6,7 +6,7 @@
  * Copyright (c) 2016 cgm616. All rights reserved.
  */
 
-#import <MediaPlayer/MediaPlayer.h>
+#import <MediaPlayer/MPVolumeView.h>
 
 @interface GMPVolumeView : MPVolumeView
 
