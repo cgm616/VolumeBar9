@@ -23,16 +23,11 @@
 @implementation VB9ChildListController
 
 -(void)githubButton:(PSSpecifier *)spec {
-  HBLogDebug(@"Github button pushed with name: %@", spec.name);
-
   NSString *user = [spec.name stringByReplacingOccurrencesOfString:@" on GitHub" withString:@""];
-
 	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:[@"https://github.com/" stringByAppendingString:user]]];
 }
 
 -(void)twitterButton:(PSSpecifier *)spec {
-  HBLogDebug(@"Twitter button pushed with name: %@", spec.name);
-
   NSString *user = [spec.name substringFromIndex:1];
 
   if([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"tweetbot:"]])

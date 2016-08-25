@@ -32,20 +32,18 @@ static VolumeBar *vbar = nil;
 static void preferenceUpdate(CFNotificationCenterRef center, void *observer, CFStringRef name, const void *object, CFDictionaryRef userInfo) {
 	CFStringRef appID = CFSTR("me.cgm616.volumebar9");
 	CFArrayRef keyList = CFPreferencesCopyKeyList(appID, kCFPreferencesCurrentUser, kCFPreferencesAnyHost);
-
   if (!keyList) {
 		HBLogError(@"There's been an error getting the key list!");
 		return;
 	}
 
 	NSDictionary *preferences = (NSDictionary *)CFPreferencesCopyMultiple(keyList, appID, kCFPreferencesCurrentUser, kCFPreferencesAnyHost);
-
   if (!preferences) {
 		HBLogError(@"There's been an error getting the preferences dictionary!");
 	}
+	CFRelease(keyList);
 
   HBLogDebug(@"Prefs dictionary has been updated to: %@", preferences);
-	CFRelease(keyList);
 
   NSNumber *key = preferences[@"enabled"];
   enabled = key ? [key boolValue] : 1;
@@ -103,14 +101,14 @@ static void preferenceUpdate(CFNotificationCenterRef center, void *observer, CFS
 %new(v@:);
 -(void)orientationChange:(NSNotification *)notification {
   if(active && vbar != nil) {
-    HBLogDebug(@"adjusting view");
     [vbar adjustViewsForOrientation:[[UIApplication sharedApplication] statusBarOrientation] animated:YES];
   }
 }
 
 %new(v@:);
 -(void)presentVolumeBarWithView:(id)view {
-  HBLogDebug(@"Volume view succesfully hooked");
+  HBLogDebug(@"Volume HUD hooked, VolumeBar enabled and showing");
+
   // TODO: pass in prefs as dictionary and handle defaults some other way
   if(!active) {
     active = true;
@@ -149,7 +147,6 @@ static void preferenceUpdate(CFNotificationCenterRef center, void *observer, CFS
   	vbar.height = height;
   	vbar.blurStyle = blurStyle;
     vbar.completion = ^{
-      HBLogDebug(@"Completion block called");
       [vbar release];
       vbar = nil;
       if(appID) {
@@ -214,10 +211,7 @@ static void preferenceUpdate(CFNotificationCenterRef center, void *observer, CFS
 
 %ctor {
   [OBJCIPC registerIncomingMessageFromAppHandlerForMessageName:@"me.cgm616.volumebar9.orientation"  handler:^NSDictionary *(NSDictionary *message) {
-    HBLogDebug(@"received orientation message");
-
     if(active && vbar != nil) {
-      HBLogDebug(@"adjusting view");
       [vbar adjustViewsForOrientation:[message[@"orientation"] longLongValue] animated:YES];
     }
 
