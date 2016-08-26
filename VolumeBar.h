@@ -71,12 +71,12 @@ typedef void(^CompletionBlock)(void);
 @property (nonatomic, strong) CompletionBlock completion;
 
 -(void)resetTimer;
--(void)swipeHandler:(UISwipeGestureRecognizer *)recognizer;
+-(void)_swipeHandler:(UISwipeGestureRecognizer *)recognizer;
 -(void)adjustViewsForOrientation:(UIInterfaceOrientation)orientation animated:(BOOL)animateOrient;
--(void)calculateRender;
--(void)createHUD;
--(void)showHUD;
--(void)hideHUD;
+-(void)_calculateRender;
+-(void)_createHUD;
+-(void)_showHUD;
+-(void)_hideHUD;
 -(void)loadHUDView:(id)view orientation:(UIInterfaceOrientation)orientation;
 
 @end

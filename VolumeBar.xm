@@ -36,16 +36,16 @@
     hide = nil;
   }
 
-  hide = [NSTimer scheduledTimerWithTimeInterval:_delayTime target:self selector:@selector(hideHUD) userInfo:nil repeats:NO];
+  hide = [NSTimer scheduledTimerWithTimeInterval:_delayTime target:self selector:@selector(_hideHUD) userInfo:nil repeats:NO];
 }
 
--(void)swipeHandler:(UITapGestureRecognizer *)gestureRecognizer { // stops hide timer and calls hideHUD when swiped
+-(void)_swipeHandler:(UITapGestureRecognizer *)gestureRecognizer { // stops hide timer and calls _hideHUD when swiped
   if(hide != nil) {
     [hide invalidate];
     hide = nil;
   }
 
-  [self hideHUD];
+  [self _hideHUD];
 }
 
 -(void)adjustViewsForOrientation:(UIInterfaceOrientation)orientation animated:(BOOL)animateOrient {
@@ -98,7 +98,7 @@
   }
 }
 
--(void)calculateRender { // does frame calculations and creates thumbImage
+-(void)_calculateRender { // does frame calculations and creates thumbImage
   CGRect screenRect = [[UIScreen mainScreen] bounds];
   screenWidth = screenRect.size.width;
   screenHeight = screenRect.size.height;
@@ -133,8 +133,8 @@
   }
 }
 
--(void)createHUD { // creates view heirarchy
-  [self calculateRender];
+-(void)_createHUD { // creates view heirarchy
+  [self _calculateRender];
 
   topWindow = [[UIWindow alloc] initWithFrame:CGRectMake(bannerX, bannerY, bannerWidth, bannerHeight)]; // window to display on screen
   topWindow.windowLevel = UIWindowLevelStatusBar;
@@ -228,7 +228,7 @@
     handle.layer.cornerRadius = 4;
     handle.layer.masksToBounds = YES;
     [mainView addSubview:handle];
-    swipeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeHandler:)];
+    swipeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(_swipeHandler:)];
     [swipeRecognizer setDirection:UISwipeGestureRecognizerDirectionUp];
   }
 
@@ -246,7 +246,7 @@
   mainView.frame = CGRectMake(bannerX, (-1 * bannerHeight) - 5, bannerWidth, bannerHeight); // hide frame for animation in
 }
 
--(void)showHUD { // animate banner in, set up gestures to work
+-(void)_showHUD { // animate banner in, set up gestures to work
   topWindow.hidden = NO;
   if(_animate) {
     [UIView animateWithDuration:_speed
@@ -268,7 +268,7 @@
   }
 }
 
--(void)hideHUD { // animate gestures out, remove gestures
+-(void)_hideHUD { // animate gestures out, remove gestures
   if(_slide && !_statusBar) {
     [handle removeGestureRecognizer:swipeRecognizer];
     [mainView removeGestureRecognizer:swipeRecognizer];
@@ -317,11 +317,11 @@
   _view = view;
   _bundle = [NSBundle bundleWithPath:@"/Library/Application Support/VolumeBar9/VolumeBar9.bundle"];
 
-  [self createHUD];
-  [self showHUD];
+  [self _createHUD];
+  [self _showHUD];
   [self adjustViewsForOrientation:orientation animated:NO];
 
-  hide = [NSTimer scheduledTimerWithTimeInterval:_delayTime target:self selector:@selector(hideHUD) userInfo:nil repeats:NO];
+  hide = [NSTimer scheduledTimerWithTimeInterval:_delayTime target:self selector:@selector(_hideHUD) userInfo:nil repeats:NO];
 }
 
 @end
