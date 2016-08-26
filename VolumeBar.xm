@@ -163,10 +163,7 @@
 
     blurSettings = [_UIBackdropViewSettings settingsForStyle:_blurStyle]; // 0 = light, 2 = default, 1 = dark
     blurView = [[_UIBackdropView alloc] initWithFrame:CGRectMake(0, 0, screenWidth, bannerHeight) autosizesToFitSuperview:YES settings:blurSettings];
-    // [blurView setBlurRadiusSetOnce:NO];
     [blurView setBlurRadius:10.0];
-    // [blurView setBlurHardEdges:2];
-    // [blurView setBlursWithHardEdges:YES];
     [blurView setBlurQuality:@"default"];
     blurView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     [mainView addSubview:blurView];
