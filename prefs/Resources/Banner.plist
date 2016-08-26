@@ -162,7 +162,7 @@
 			<key>key</key>
 			<string>routebutton</string>
 			<key>label</key>
-			<string>Show Route Chooser</string>
+			<string>Route Button</string>
 			<key>default</key>
 			<true/>
 			<key>PostNotification</key>
@@ -176,7 +176,7 @@
 			<key>key</key>
 			<string>drop</string>
 			<key>label</key>
-			<string>Use Drop Shadow</string>
+			<string>Drop Shadow</string>
 			<key>default</key>
 			<false/>
 			<key>PostNotification</key>
@@ -204,7 +204,7 @@
 			<key>key</key>
 			<string>label</string>
 			<key>label</key>
-			<string>Show Mode Label</string>
+			<string>Mode Label</string>
 			<key>default</key>
 			<false/>
 			<key>PostNotification</key>
