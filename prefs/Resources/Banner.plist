@@ -210,7 +210,20 @@
 			<key>PostNotification</key>
 			<string>me.cgm616.volumebar9/preferences.changed</string>
 		</dict>
-
+    <dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>defaults</key>
+			<string>me.cgm616.volumebar9</string>
+			<key>key</key>
+			<string>icon</string>
+			<key>label</key>
+			<string>Slider Icons</string>
+			<key>default</key>
+			<true/>
+			<key>PostNotification</key>
+			<string>me.cgm616.volumebar9/preferences.changed</string>
+		</dict>
 	</array>
 	<key>title</key>
 	<string>Banner Settings</string>

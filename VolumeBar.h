@@ -7,6 +7,7 @@
  */
 
 #import <UIKit/UIKit.h>
+#import <UIImage+Scale.h>
 #import <CoreGraphics/CoreGraphics.h>
 #import <AudioToolbox/AudioToolbox.h>
 #import "GMPVolumeView.h"
@@ -45,6 +46,8 @@ typedef void(^CompletionBlock)(void);
 	CGFloat sliderY;
 
 	id _view;
+
+  NSBundle *_bundle;
 }
 
 @property (nonatomic) BOOL animate;
@@ -52,6 +55,7 @@ typedef void(^CompletionBlock)(void);
 @property (nonatomic) BOOL showRouteButton;
 @property (nonatomic) BOOL blur;
 @property (nonatomic) BOOL drop;
+@property (nonatomic) BOOL icon;
 @property (nonatomic) BOOL statusBar;
 @property (nonatomic) BOOL slide;
 @property (nonatomic) BOOL label;

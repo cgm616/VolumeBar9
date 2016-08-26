@@ -19,6 +19,7 @@
 @synthesize showRouteButton = _showRouteButton;
 @synthesize blur = _blur;
 @synthesize drop = _drop;
+@synthesize icon = _icon;
 @synthesize statusBar = _statusBar;
 @synthesize slide = _slide;
 @synthesize label = _label;
@@ -188,17 +189,35 @@
   }
   volumeSlider.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 
+  UIImage *minimum;
+  UIImage *maximum;
+  CGSize minSize;
+  CGSize maxSize = CGSizeMake(16, 16);
+
   if([_view mode] == 1) {
     [[volumeSlider volumeSlider] setVolumeAudioCategory:@"Ringtone"];
+    minimum = [UIImage imageNamed:@"ringerMinimum" inBundle:_bundle compatibleWithTraitCollection:nil];
+    maximum = [UIImage imageNamed:@"ringerMaximum" inBundle:_bundle compatibleWithTraitCollection:nil];
+    minSize = maxSize;
   } else {
     [[volumeSlider volumeSlider] setVolumeAudioCategory:@"Audio/Video"];
+    minimum = [UIImage imageNamed:@"playerMinimum" inBundle:_bundle compatibleWithTraitCollection:nil];
+    maximum = [UIImage imageNamed:@"playerMaximum" inBundle:_bundle compatibleWithTraitCollection:nil];
+    minSize = CGSizeMake(14, 14);
   }
 
   CGFloat brightness;
   if(_statusBrightness > 0.5) {
     brightness = 1.0;
+    minimum = [minimum invertImage];
+    maximum = [maximum invertImage];
   } else {
     brightness = 0.0;
+  }
+
+  if(_icon) {
+    [volumeSlider volumeSlider].minimumValueImage = [minimum scaleImageToSize:minSize alpha:0.5];
+    [volumeSlider volumeSlider].maximumValueImage = [maximum scaleImageToSize:maxSize alpha:0.5];
   }
 
   [mainView addSubview:volumeSlider];
@@ -296,6 +315,8 @@
 
 -(void)loadHUDView:(id)view orientation:(UIInterfaceOrientation)orientation { // only method called from Tweak.xm, calls all other methods for setup and hiding
   _view = view;
+  _bundle = [NSBundle bundleWithPath:@"/Library/Application Support/VolumeBar9/VolumeBar9.bundle"];
+
   [self createHUD];
   [self showHUD];
   [self adjustViewsForOrientation:orientation animated:NO];

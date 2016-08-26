@@ -1,7 +1,7 @@
 include $(THEOS)/makefiles/common.mk
 
 TWEAK_NAME = VolumeBar9
-VolumeBar9_FILES = $(wildcard *.xm)
+VolumeBar9_FILES = $(wildcard *.xm) UIImage+Scale.m
 VolumeBar9_FRAMEWORKS = Foundation
 VolumeBar9_LIBRARIES = colorpicker objcipc
 

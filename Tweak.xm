@@ -15,6 +15,7 @@ static BOOL userInteraction;
 static BOOL showRouteButton;
 static BOOL blur;
 static BOOL drop;
+static BOOL icon;
 static BOOL statusBar;
 static BOOL slide;
 static BOOL label;
@@ -62,6 +63,9 @@ static void preferenceUpdate(CFNotificationCenterRef center, void *observer, CFS
 
 	key = preferences[@"drop"];
   drop = key ? [key boolValue] : 0;
+
+  key = preferences[@"icon"];
+  icon = key ? [key boolValue] : 1;
 
 	key = preferences[@"statusBar"];
 	statusBar = key ? [key boolValue] : 0;
@@ -147,6 +151,7 @@ static void preferenceUpdate(CFNotificationCenterRef center, void *observer, CFS
   	vbar.showRouteButton = showRouteButton;
   	vbar.blur = blur;
   	vbar.drop = drop;
+    vbar.icon = icon;
   	vbar.statusBar = statusBar;
   	vbar.slide = slide;
   	vbar.label = label;
