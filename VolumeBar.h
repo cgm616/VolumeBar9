@@ -59,6 +59,7 @@ typedef void(^CompletionBlock)(void);
 @property (nonatomic) double speed;
 @property (nonatomic) double height;
 @property (nonatomic) int blurStyle;
+@property (nonatomic) CGFloat statusBrightness;
 @property (nonatomic, strong) UIColor *color;
 @property (nonatomic) BOOL sliderColorEnabled;
 @property (nonatomic, strong) UIColor *minColor;

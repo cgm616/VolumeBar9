@@ -26,6 +26,7 @@
 @synthesize speed = _speed;
 @synthesize height = _height;
 @synthesize blurStyle = _blurStyle;
+@synthesize statusBrightness = _statusBrightness;
 @synthesize completion = _completion;
 
 -(void)resetTimer {
@@ -193,11 +194,18 @@
     [[volumeSlider volumeSlider] setVolumeAudioCategory:@"Audio/Video"];
   }
 
+  CGFloat brightness;
+  if(_statusBrightness > 0.5) {
+    brightness = 1.0;
+  } else {
+    brightness = 0.0;
+  }
+
   [mainView addSubview:volumeSlider];
 
   if(_slide && !_statusBar) { // set up swipe handler and create handle view, add to mainView
     handle = [[UIView alloc] initWithFrame:CGRectMake((screenWidth / 2) - 16, bannerHeight - 10, 32, 8)];
-    [handle setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.5]];
+    [handle setBackgroundColor:[UIColor colorWithRed:brightness green:brightness blue:brightness alpha:0.5]];
     handle.layer.cornerRadius = 4;
     handle.layer.masksToBounds = YES;
     [mainView addSubview:handle];
@@ -209,7 +217,7 @@
     label = [[UILabel alloc] initWithFrame:CGRectMake(bannerX, bannerY + 2, bannerWidth, sliderY)];
     [label setBackgroundColor:[UIColor clearColor]];
     label.text = [_view mode] == 1 ? @"Ringer" : @"Player";
-    label.textColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5]; // TODO: make text white when needed for contrast
+    label.textColor = [UIColor colorWithRed:brightness green:brightness blue:brightness alpha:0.5];
     label.textAlignment = NSTextAlignmentCenter;
     label.font = [UIFont systemFontOfSize:12];
     [mainView addSubview:label];

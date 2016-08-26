@@ -16,8 +16,16 @@
     UIStatusBarForegroundView *view = MSHookIvar<UIStatusBarForegroundView *>(statusBar, "_foregroundView");
     view.hidden = YES;
 
+    UIStatusBarStyleAttributes *style = MSHookIvar<UIStatusBarStyleAttributes *>(statusBar, "_styleAttributes");
+    UIStatusBarForegroundStyleAttributes *foregroundStyle = MSHookIvar<UIStatusBarForegroundStyleAttributes *>(style, "_foregroundStyle");
+
+    UIColor *foregroundColor = [foregroundStyle tintColor];
+    CGFloat hue, saturation, brightness, alpha;
+    [foregroundColor getHue:&hue saturation:&saturation brightness:&brightness alpha:&alpha];
+
     NSDictionary *return_message = @{
       @"currentOrientation" : [NSNumber numberWithLongLong:[[UIApplication sharedApplication] statusBarOrientation]],
+      @"foregroundBrightness" : [NSNumber numberWithFloat:brightness],
     };
 
 	  return return_message;

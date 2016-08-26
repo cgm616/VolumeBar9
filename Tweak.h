@@ -12,6 +12,8 @@
 #import <SpringBoard/SpringBoard.h>
 #import <SpringBoard/SBApplication.h>
 #import <UIKit/UIStatusBarForegroundView.h>
+#import <UIKit/UIStatusBarForegroundStyleAttributes.h>
+#import <UIKit/UIStatusBarStyleAttributes.h>
 #import <libobjcipc/objcipc.h>
 #import "VolumeBar.h"
 

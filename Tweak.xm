@@ -119,15 +119,23 @@ static void preferenceUpdate(CFNotificationCenterRef center, void *observer, CFS
     NSString *appID = [(SpringBoard *)[UIApplication sharedApplication] _accessibilityFrontMostApplication].bundleIdentifier;
 
     UIInterfaceOrientation startOrientation;
+    CGFloat hue, saturation, brightness, alpha;
 
     if(appID) {
       NSDictionary *reply = [OBJCIPC sendMessageToAppWithIdentifier:appID messageName:@"me.cgm616.volumebar9.showing" dictionary:nil];
       startOrientation = [reply[@"currentOrientation"] longLongValue];
+      brightness = [reply[@"foregroundBrightness"] floatValue];
     } else {
       UIStatusBar *statusBar = MSHookIvar<UIStatusBar *>([UIApplication sharedApplication], "_statusBar");
       UIStatusBarForegroundView *view = MSHookIvar<UIStatusBarForegroundView *>(statusBar, "_foregroundView");
       view.hidden = YES;
       startOrientation = [[UIApplication sharedApplication] statusBarOrientation];
+
+      UIStatusBarStyleAttributes *style = MSHookIvar<UIStatusBarStyleAttributes *>(statusBar, "_styleAttributes");
+      UIStatusBarForegroundStyleAttributes *foregroundStyle = MSHookIvar<UIStatusBarForegroundStyleAttributes *>(style, "_foregroundStyle");
+
+      UIColor *foregroundColor = [foregroundStyle tintColor];
+      [foregroundColor getHue:&hue saturation:&saturation brightness:&brightness alpha:&alpha];
     }
 
   	vbar.color = color;
@@ -146,6 +154,7 @@ static void preferenceUpdate(CFNotificationCenterRef center, void *observer, CFS
   	vbar.speed = speed;
   	vbar.height = height;
   	vbar.blurStyle = blurStyle;
+    vbar.statusBrightness = brightness;
     vbar.completion = ^{
       [vbar release];
       vbar = nil;
