@@ -27,10 +27,10 @@ typedef void(^CompletionBlock)(void);
 	UIView *handle;
 	UIImage *thumbImage;
 	UILabel *label;
+  GMPVolumeView *volumeSlider;
 
   NSTimer *hide;
 
-	GMPVolumeView *volumeSlider;
   CGFloat screenWidth;
   CGFloat screenHeight;
 
