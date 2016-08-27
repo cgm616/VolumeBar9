@@ -18,6 +18,7 @@ static BOOL drop;
 static BOOL icon;
 static BOOL statusBar;
 static BOOL slide;
+static BOOL slideHandle;
 static BOOL label;
 static double delayTime;
 static double speed;
@@ -72,6 +73,9 @@ static void preferenceUpdate(CFNotificationCenterRef center, void *observer, CFS
 
 	key = preferences[@"slide"];
 	slide = key ? [key boolValue] : 1;
+
+  key = preferences[@"slideHandle"];
+	slideHandle = key ? [key boolValue] : 0;
 
 	key = preferences[@"label"];
 	label = key ? [key boolValue] : 0;
@@ -154,6 +158,7 @@ static void preferenceUpdate(CFNotificationCenterRef center, void *observer, CFS
     vbar.icon = icon;
   	vbar.statusBar = statusBar;
   	vbar.slide = slide;
+    vbar.slideHandle = slideHandle;
   	vbar.label = label;
   	vbar.delayTime = delayTime;
   	vbar.speed = speed;

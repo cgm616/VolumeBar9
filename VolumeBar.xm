@@ -22,6 +22,7 @@
 @synthesize icon = _icon;
 @synthesize statusBar = _statusBar;
 @synthesize slide = _slide;
+@synthesize slideHandle = _slideHandle;
 @synthesize label = _label;
 @synthesize delayTime = _delayTime;
 @synthesize speed = _speed;
@@ -123,7 +124,7 @@
 
   sliderHeight = bannerHeight;
 
-  if(_slide && !_statusBar) {
+  if(_slideHandle && !_statusBar) {
     bannerHeight = bannerHeight + 12;
   }
 
@@ -219,14 +220,12 @@
 
   [mainView addSubview:volumeSlider];
 
-  if(_slide && !_statusBar) { // set up swipe handler and create handle view, add to mainView
+  if(_slideHandle && !_statusBar) { // set up swipe handler and create handle view, add to mainView
     handle = [[UIView alloc] initWithFrame:CGRectMake((screenWidth / 2) - 16, bannerHeight - 10, 32, 8)];
     [handle setBackgroundColor:[UIColor colorWithRed:brightness green:brightness blue:brightness alpha:0.5]];
     handle.layer.cornerRadius = 4;
     handle.layer.masksToBounds = YES;
     [mainView addSubview:handle];
-    swipeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(_swipeHandler:)];
-    [swipeRecognizer setDirection:UISwipeGestureRecognizerDirectionUp];
   }
 
   if(_label && !_statusBar) { // add label depending on mode, add to mainView
@@ -243,8 +242,25 @@
   mainView.frame = CGRectMake(bannerX, (-1 * bannerHeight) - 5, bannerWidth, bannerHeight); // hide frame for animation in
 }
 
+-(void)_addGestureToView:(UIView *)view {
+  UISwipeGestureRecognizer *swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(_swipeHandler:)];
+  [swipe setDirection:UISwipeGestureRecognizerDirectionUp];
+  [view addGestureRecognizer:swipe];
+  [swipe release];
+}
+
 -(void)_showHUD { // animate banner in, set up gestures to work
   topWindow.hidden = NO;
+
+  if(_slide) {
+    [self _addGestureToView:topWindow];
+    [self _addGestureToView:mainView];
+    [self _addGestureToView:volumeSlider];
+    if(_slideHandle) {
+      [self _addGestureToView:handle];
+    }
+  }
+
   if(_animate) {
     [UIView animateWithDuration:_speed
 	    delay:0
@@ -258,19 +274,9 @@
   } else {
     mainView.frame = CGRectMake(bannerX, bannerY, bannerWidth, bannerHeight);
   }
-
-  if(_slide && !_statusBar) {
-    [handle addGestureRecognizer:swipeRecognizer];
-    [mainView addGestureRecognizer:swipeRecognizer];
-  }
 }
 
 -(void)_hideHUD { // animate gestures out, remove gestures
-  if(_slide && !_statusBar) {
-    [handle removeGestureRecognizer:swipeRecognizer];
-    [mainView removeGestureRecognizer:swipeRecognizer];
-  }
-
   if(_animate) {
     [UIView animateWithDuration:_speed
 	    delay:0
@@ -300,8 +306,9 @@
 
 -(void)dealloc {
   [volumeSlider release];
-  [swipeRecognizer release];
-  [handle release];
+  if(_slideHandle) {
+    [handle release];
+  }
   [mainView release];
   [topWindow release];
   if(hide != nil) {
