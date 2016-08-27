@@ -138,7 +138,7 @@
   [self _calculateRender];
 
   topWindow = [[UIWindow alloc] initWithFrame:CGRectMake(bannerX, bannerY, bannerWidth, bannerHeight)]; // window to display on screen
-  topWindow.windowLevel = UIWindowLevelStatusBar;
+  topWindow.windowLevel = UIWindowLevelStatusBar + 100;
   topWindow.backgroundColor = [UIColor clearColor];
   [topWindow setUserInteractionEnabled:YES];
   [topWindow makeKeyAndVisible];
