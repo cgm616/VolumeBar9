@@ -64,7 +64,7 @@
 	    <key>isController</key>
 	    <string>1</string>
 	    <key>label</key>
-	    <string>Animation Settings</string>
+	    <string>Interaction Settings</string>
 	    <key>icon</key>
       <string></string>
 	    <key>detail</key>
