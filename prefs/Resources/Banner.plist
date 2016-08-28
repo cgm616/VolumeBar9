@@ -21,7 +21,7 @@
 			<key>key</key>
 			<string>blur</string>
 			<key>label</key>
-			<string>Use Blur Instead of Color</string>
+			<string>Blur Instead of Color</string>
 			<key>default</key>
 			<true/>
 			<key>PostNotification</key>
@@ -65,7 +65,6 @@
 			<key>PostNotification</key>
 			<string>me.cgm616.volumebar9/preferences.changed</string>
 		</dict>
-
     <dict>
 			<key>cell</key>
 			<string>PSGroupCell</string>
@@ -82,7 +81,7 @@
 			<key>key</key>
 			<string>sliderColorEnabled</string>
 			<key>label</key>
-			<string>Use Custom Slider Colors</string>
+			<string>Custom Slider Colors</string>
 			<key>default</key>
 			<false/>
 			<key>PostNotification</key>
