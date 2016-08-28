@@ -7,7 +7,7 @@ Now the HUD is a small slider at the top of the screen, with many customizable o
 
 Please contribute to the project! Fix memory leaks, add improvements, anything really. The code is very, very bad. In particular the VolumeBar class is all stateful, which I hope can be fixed at some point.
 
-[![GitHub release](https://img.shields.io/github/release/qubyte/rubidium.svg?maxAge=2592000)](https://github.com/cgm616/VolumeBar9/releases)
+[![GitHub release](https://img.shields.io/github/release/cgm616/volumebar9.svg?maxAge=2592000)](https://github.com/cgm616/VolumeBar9/releases)
 
 Table of contents
 =================
