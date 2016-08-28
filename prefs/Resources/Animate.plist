@@ -80,7 +80,7 @@
       <key>label</key>
       <string>Dismiss Early</string>
       <key>footerText</key>
-      <string>Choose whether or not to enable hiding the banner before the time is up, and choose the gesture to do so. When dismissing isn't enabled, the type does nothing. For the slide gesture, enabling the decorative handle in banner settings is recommended.</string>
+      <string>Choose whether or not to enable dismissing the banner before the time is up, and choose the gesture to do so. For the slide gesture, enabling the decorative handle in banner settings is recommended.</string>
     </dict>
     <dict>
       <key>cell</key>
