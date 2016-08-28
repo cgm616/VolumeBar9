@@ -7,42 +7,6 @@
 		<dict>
 			<key>cell</key>
 			<string>PSGroupCell</string>
-		</dict>
-		<dict>
-			<key>cell</key>
-			<string>PSSwitchCell</string>
-			<key>defaults</key>
-			<string>me.cgm616.volumebar9</string>
-			<key>key</key>
-			<string>animation</string>
-			<key>label</key>
-			<string>Animate Banner</string>
-			<key>default</key>
-			<true/>
-			<key>PostNotification</key>
-			<string>me.cgm616.volumebar9/preferences.changed</string>
-		</dict>
-		<dict>
-			<key>cell</key>
-			<string>PSGroupCell</string>
-		</dict>
-		<dict>
-			<key>cell</key>
-			<string>PSSwitchCell</string>
-			<key>defaults</key>
-			<string>me.cgm616.volumebar9</string>
-			<key>key</key>
-			<string>interaction</string>
-			<key>label</key>
-			<string>Allow Slider Interaction</string>
-			<key>default</key>
-			<true/>
-			<key>PostNotification</key>
-			<string>me.cgm616.volumebar9/preferences.changed</string>
-		</dict>
-		<dict>
-			<key>cell</key>
-			<string>PSGroupCell</string>
 			<key>label</key>
 			<string>Time Shown On Screen</string>
 			<key>footerText</key>
@@ -72,9 +36,23 @@
 			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>label</key>
-			<string>Speed of Animation</string>
+			<string>Animation Length</string>
 			<key>footerText</key>
-			<string>How long the animation takes, in seconds.</string>
+			<string>Whether or not to animate the banner sliding in, and how long it'll take to appear if animation is enabled.</string>
+		</dict>
+    <dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>defaults</key>
+			<string>me.cgm616.volumebar9</string>
+			<key>key</key>
+			<string>animation</string>
+			<key>label</key>
+			<string>Animate Banner</string>
+			<key>default</key>
+			<true/>
+			<key>PostNotification</key>
+			<string>me.cgm616.volumebar9/preferences.changed</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -93,6 +71,81 @@
 			<string>0.01</string>
 			<key>max</key>
 			<string>1.0</string>
+			<key>PostNotification</key>
+			<string>me.cgm616.volumebar9/preferences.changed</string>
+		</dict>
+    <dict>
+      <key>cell</key>
+      <string>PSGroupCell</string>
+      <key>label</key>
+      <string>Dismiss Early</string>
+      <key>footerText</key>
+      <string>Choose whether or not to enable hiding the banner before the time is up, and choose the gesture to do so. When dismissing isn't enabled, the type does nothing. For the slide gesture, enabling the decorative handle in banner settings is recommended.</string>
+    </dict>
+    <dict>
+      <key>cell</key>
+      <string>PSSwitchCell</string>
+      <key>defaults</key>
+      <string>me.cgm616.volumebar9</string>
+      <key>key</key>
+      <string>gesture</string>
+      <key>label</key>
+      <string>Dismiss Banner with Gesture</string>
+      <key>default</key>
+      <true/>
+      <key>PostNotification</key>
+      <string>me.cgm616.volumebar9/preferences.changed</string>
+    </dict>
+    <dict>
+			<key>cell</key>
+			<string>PSSegmentCell</string>
+			<key>defaults</key>
+			<string>me.cgm616.volumebar9</string>
+			<key>key</key>
+			<string>gesturetype</string>
+			<key>validValues</key>
+			<array>
+				<string>0</string>
+				<string>1</string>
+        <string>2</string>
+				<string>3</string>
+			</array>
+			<key>validTitles</key>
+			<array>
+				<string>Slide Up</string>
+				<string>Single Tap</string>
+				<string>Double Tap</string>
+        <string>Long Press</string>
+			</array>
+			<key>shortTitles</key>
+			<array>
+				<string>Slide Up</string>
+				<string>Tap</string>
+				<string>Double Tap</string>
+        <string>Long Press</string>
+			</array>
+			<key>default</key>
+			<string>2</string>
+			<key>PostNotification</key>
+			<string>me.cgm616.volumebar9/preferences.changed</string>
+		</dict>
+    <dict>
+      <key>cell</key>
+      <string>PSGroupCell</string>
+      <key>label</key>
+      <string>Other Interactions</string>
+    </dict>
+    <dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>defaults</key>
+			<string>me.cgm616.volumebar9</string>
+			<key>key</key>
+			<string>interaction</string>
+			<key>label</key>
+			<string>Slider Interaction</string>
+			<key>default</key>
+			<true/>
 			<key>PostNotification</key>
 			<string>me.cgm616.volumebar9/preferences.changed</string>
 		</dict>

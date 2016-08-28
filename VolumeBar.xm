@@ -21,13 +21,14 @@
 @synthesize drop = _drop;
 @synthesize icon = _icon;
 @synthesize statusBar = _statusBar;
-@synthesize slide = _slide;
+@synthesize gesture = _gesture;
 @synthesize slideHandle = _slideHandle;
 @synthesize label = _label;
 @synthesize delayTime = _delayTime;
 @synthesize speed = _speed;
 @synthesize height = _height;
 @synthesize blurStyle = _blurStyle;
+@synthesize gestureType = _gestureType;
 @synthesize statusBrightness = _statusBrightness;
 @synthesize completion = _completion;
 
@@ -243,16 +244,45 @@
 }
 
 -(void)_addGestureToView:(UIView *)view {
-  UISwipeGestureRecognizer *swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(_swipeHandler:)];
-  [swipe setDirection:UISwipeGestureRecognizerDirectionUp];
-  [view addGestureRecognizer:swipe];
-  [swipe release];
+  switch (_gestureType) {
+    case VB9GestureTypeSlide:
+    {
+      UISwipeGestureRecognizer *gesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(_swipeHandler:)];
+      [gesture setDirection:UISwipeGestureRecognizerDirectionUp];
+      [view addGestureRecognizer:gesture];
+      [gesture release];
+    } break;
+
+    case VB9GestureTypeLongPress:
+    {
+      UILongPressGestureRecognizer *gesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(_swipeHandler:)];
+      gesture.allowableMovement = 5.0;
+      [view addGestureRecognizer:gesture];
+      [gesture release];
+    } break;
+
+    case VB9GestureTypeTap:
+    {
+      UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_swipeHandler:)];
+      [view addGestureRecognizer:gesture];
+      [gesture release];
+    } break;
+
+    default:
+    case VB9GestureTypeDoubleTap:
+    {
+      UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_swipeHandler:)];
+      gesture.numberOfTapsRequired = 2;
+      [view addGestureRecognizer:gesture];
+      [gesture release];
+    } break;
+  }
 }
 
 -(void)_showHUD { // animate banner in, set up gestures to work
   topWindow.hidden = NO;
 
-  if(_slide) {
+  if(_gesture) {
     [self _addGestureToView:topWindow];
     [self _addGestureToView:mainView];
     [self _addGestureToView:volumeSlider];

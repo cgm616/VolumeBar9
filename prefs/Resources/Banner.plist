@@ -104,14 +104,13 @@
 			<key>label</key>
 			<string>Maximum Color</string>
 		</dict>
-
 		<dict>
 			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>label</key>
 			<string>Height Multiplier</string>
 			<key>footerText</key>
-			<string>Turning status bar height on will disable the label, slide to dismiss, and the routing button.</string>
+			<string>Turning status bar height on will disable the label, the decorative handle, and the routing button.</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -147,12 +146,13 @@
 			<key>PostNotification</key>
 			<string>me.cgm616.volumebar9/preferences.changed</string>
 		</dict>
-
 		<dict>
 			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>label</key>
-			<string>Miscellaneous</string>
+			<string>Other UI Elements</string>
+      <key>footerText</key>
+      <string>The route button allows choosing where sound is played. The icons will change depending on what volume mode is being changed.</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -179,20 +179,6 @@
 			<string>Drop Shadow</string>
 			<key>default</key>
 			<false/>
-			<key>PostNotification</key>
-			<string>me.cgm616.volumebar9/preferences.changed</string>
-		</dict>
-		<dict>
-			<key>cell</key>
-			<string>PSSwitchCell</string>
-			<key>defaults</key>
-			<string>me.cgm616.volumebar9</string>
-			<key>key</key>
-			<string>slide</string>
-			<key>label</key>
-			<string>Slide to Dismiss</string>
-			<key>default</key>
-			<true/>
 			<key>PostNotification</key>
 			<string>me.cgm616.volumebar9/preferences.changed</string>
 		</dict>

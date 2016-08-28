@@ -17,13 +17,14 @@ static BOOL blur;
 static BOOL drop;
 static BOOL icon;
 static BOOL statusBar;
-static BOOL slide;
+static BOOL gesture;
 static BOOL slideHandle;
 static BOOL label;
 static double delayTime;
 static double speed;
 static double height;
 static int blurStyle;
+static VB9GestureType gestureType;
 static UIColor *color;
 static UIColor *minColor;
 static UIColor *maxColor;
@@ -71,8 +72,8 @@ static void preferenceUpdate(CFNotificationCenterRef center, void *observer, CFS
 	key = preferences[@"statusBar"];
 	statusBar = key ? [key boolValue] : 0;
 
-	key = preferences[@"slide"];
-	slide = key ? [key boolValue] : 1;
+	key = preferences[@"gesture"];
+	gesture = key ? [key boolValue] : 1;
 
   key = preferences[@"slideHandle"];
 	slideHandle = key ? [key boolValue] : 0;
@@ -91,6 +92,9 @@ static void preferenceUpdate(CFNotificationCenterRef center, void *observer, CFS
 
   key = preferences[@"blurstyle"];
   blurStyle = key ? [key intValue] : 2;
+
+  key = preferences[@"gesturetype"];
+  gestureType = key ? [key intValue] : 2;
 
   key = preferences[@"sliderColorEnabled"];
   sliderColorEnabled = key ? [key boolValue] : 0;
@@ -157,13 +161,14 @@ static void preferenceUpdate(CFNotificationCenterRef center, void *observer, CFS
   	vbar.drop = drop;
     vbar.icon = icon;
   	vbar.statusBar = statusBar;
-  	vbar.slide = slide;
+  	vbar.gesture = gesture;
     vbar.slideHandle = slideHandle;
   	vbar.label = label;
   	vbar.delayTime = delayTime;
   	vbar.speed = speed;
   	vbar.height = height;
   	vbar.blurStyle = blurStyle;
+    vbar.gestureType = gestureType;
     vbar.statusBrightness = brightness;
     vbar.completion = ^{
       [vbar release];

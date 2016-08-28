@@ -15,9 +15,8 @@
 #import <UIKit/_UIBackdropViewSettings.h>
 #import <SpringBoard/VolumeControl.h>
 #import <Celestial/AVSystemController.h>
+#import "Shared.h"
 #include <tgmath.h>
-
-typedef void(^CompletionBlock)(void);
 
 @interface VolumeBar : NSObject {
 	UIWindow *topWindow;
@@ -56,13 +55,14 @@ typedef void(^CompletionBlock)(void);
 @property (nonatomic) BOOL drop;
 @property (nonatomic) BOOL icon;
 @property (nonatomic) BOOL statusBar;
-@property (nonatomic) BOOL slide;
+@property (nonatomic) BOOL gesture;
 @property (nonatomic) BOOL slideHandle;
 @property (nonatomic) BOOL label;
 @property (nonatomic) double delayTime;
 @property (nonatomic) double speed;
 @property (nonatomic) double height;
 @property (nonatomic) int blurStyle;
+@property (nonatomic) VB9GestureType gestureType;
 @property (nonatomic) CGFloat statusBrightness;
 @property (nonatomic, strong) UIColor *color;
 @property (nonatomic) BOOL sliderColorEnabled;

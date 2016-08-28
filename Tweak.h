@@ -16,8 +16,7 @@
 #import <UIKit/UIStatusBarStyleAttributes.h>
 #import <libobjcipc/objcipc.h>
 #import "VolumeBar.h"
-
-typedef void(^CompletionBlock)(void);
+#import "Shared.h"
 
 @interface SBHUDController
 
