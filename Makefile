@@ -12,3 +12,7 @@ after-install::
 SUBPROJECTS += prefs
 SUBPROJECTS += vb9appkit
 include $(THEOS_MAKE_PATH)/aggregate.mk
+
+depiction: README.md
+	@mkdir -p ./generated_depictions/
+	@ruby ./depictions/generate.rb ./README.md $(shell cat ./control | grep Name: | cut -d' ' -f2-) $(shell cat ./control | grep Version: | cut -d' ' -f2-) $(shell cat ./control | grep Package: | cut -d' ' -f2-)
