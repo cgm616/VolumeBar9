@@ -1,4 +1,4 @@
 .theos
-obj/
+obj
 packages
 generated_depictions
