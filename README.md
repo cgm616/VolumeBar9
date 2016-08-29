@@ -3,9 +3,13 @@ VolumeBar9
 
 A replacement for the disruptive, rounded-square volume HUD included with stock iOS. Only for jailbroken devices.
 
-Now the HUD is a small slider at the top of the screen, with many customizable options and features, and an easier way to change the volume quickly. This project stems from my previous project, [VolumeBar](https://github.com/cgm616/VolumeBar). Confirmed to work on iOS 9.3.3, on an iPhone 6S set to the resolution of an iPhone 6S+. There doesn't seem to be a reason for it not to work on iOS 9.3.2 and below, but it has not been tested (yet), and it also hasn't been extensively tested on any other devices. iPads in particular may cause bugs concerning the bigger screens.
+When you press the volume buttons, a small banner now appears at the top of the screen with a slider. This slider shows the current volume, is updated when the volume buttons are pressed, and can be moved to change the volume as well!
 
-Please contribute to the project! Fix memory leaks, add improvements, anything really. The code is very, very bad. In particular the VolumeBar class is all stateful, which I hope can be fixed at some point.
+VolumeBar9 has many customizable options, from the colors of the banner and slider to interaction with the banner itself.
+
+This project stems from my previous project, [VolumeBar](https://github.com/cgm616/VolumeBar).
+
+VolmeBar9 is confirmed to work on iOS 9.3.3, on an iPhone 6S set to the resolution of an iPhone 6S+. There doesn't seem to be a reason for it not to work on iOS 9.3.2 and below, but it has not been tested (yet), and it also hasn't been extensively tested on any other devices. iPads in particular may cause bugs concerning the bigger screens.
 
 [![Cydia repo](https://img.shields.io/badge/repo-cgm616.me%2Frepo-blue.svg)](https://cgm616.me/repo)
 [![GitHub release](https://img.shields.io/github/release/cgm616/volumebar9.svg?maxAge=2592000)](https://github.com/cgm616/VolumeBar9/releases)
@@ -15,11 +19,29 @@ Table of contents
 
 - [VolumeBar9](#volumebar9)
 - [Table of contents](#table-of-contents)
+- [Features](#features)
 - [Install](#install)
 - [Changelog](#changelog)
 - [License](#license)
 - [Contributing](#contributing)
 - [Contributors](#contributors)
+
+
+Features
+========
+
+Currently, VolumeBar9 is full of features that users have asked for. However, there's always room for improvement, so feel free to suggest more.
+
+- Interactive slider to control volume, in a small non-irritating banner
+- Works on both the ringer and the player volumes
+  - Icons to differentiate between modes, or alternatively a mode label
+- Handles orientation change events and animates changing
+- Can be themed in many different ways to fit any device theme
+  - Banner can be blurred in three different styles, or custom-colored
+  - Slider track can be colored a color of your choice
+- Can be dismissed by a easy, user-controlled gesture
+- UI elements automatically change color to maximize contrast
+- Animation and time the banner appears can be customized
 
 
 Install
