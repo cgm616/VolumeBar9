@@ -6,4 +6,5 @@ Architecture: iphoneos-arm
 Description: Changes the ugly volume HUD to a nice bar.
 Maintainer: cgm616 <cgm616+cydia@gmail.com>
 Author: cgm616 <cgm616+cydia@gmail.com>
+Depiction: https://github.com/cgm616/VolumeBar9/blob/master/README.md
 Section: Tweaks
