@@ -9,7 +9,7 @@ VolumeBar9 has many customizable options, from the colors of the banner and slid
 
 This project stems from my previous project, [VolumeBar](https://github.com/cgm616/VolumeBar).
 
-VolmeBar9 is confirmed to work on iOS 9.3.3, on an iPhone 6S set to the resolution of an iPhone 6S+. There doesn't seem to be a reason for it not to work on iOS 9.3.2 and below, but it has not been tested (yet), and it also hasn't been extensively tested on any other devices. iPads in particular may cause bugs concerning the bigger screens.
+VolumeBar9 is confirmed to work on iOS 9.3.3, on an iPhone 6S set to the resolution of an iPhone 6S+. There doesn't seem to be a reason for it not to work on iOS 9.3.2 and below, but it has not been tested (yet), and it also hasn't been extensively tested on any other devices. iPads in particular may cause bugs concerning the bigger screens.
 
 [![Cydia repo](https://img.shields.io/badge/repo-cgm616.me%2Frepo-blue.svg)](https://cgm616.me/repo)
 [![GitHub release](https://img.shields.io/github/release/cgm616/volumebar9.svg?maxAge=2592000)](https://github.com/cgm616/VolumeBar9/releases)
