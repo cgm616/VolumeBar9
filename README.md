@@ -65,6 +65,8 @@ Every new update pushed on my Cydia repo is also tagged and signed, which can be
 
 These tags have small descriptions of changes, which are also copied below. Longer versions can be found on the GitHub [releases page](https://github.com/cgm616/VolumeBar9/releases).
 
+- [v0.3.2-beta](https://github.com/cgm616/VolumeBar9/releases/tag/v0.3.2-beta) | August 28, 2016
+  - Add package depiction
 - [v0.3.1-beta](https://github.com/cgm616/VolumeBar9/releases/tag/v0.3.1-beta) | August 27, 2016
   - Fix and clarify language in preferences
 - [v0.3.0-beta](https://github.com/cgm616/VolumeBar9/releases/tag/v0.3.0-beta) | August 27, 2016
