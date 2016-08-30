@@ -14,19 +14,6 @@ VolumeBar9 is confirmed to work on iOS 9.3.3, on an iPhone 6S set to the resolut
 [![Cydia repo](https://img.shields.io/badge/repo-cgm616.me%2Frepo-blue.svg)](https://cgm616.me/repo)
 [![GitHub release](https://img.shields.io/github/release/cgm616/volumebar9.svg?maxAge=2592000)](https://github.com/cgm616/VolumeBar9/releases)
 
-Table of contents
-=================
-
-- [VolumeBar9](#volumebar9)
-- [Table of contents](#table-of-contents)
-- [Features](#features)
-  - [Screenshots](#screenshots)
-- [Install](#install)
-- [Changelog](#changelog)
-- [License](#license)
-- [Contributing](#contributing)
-- [Contributors](#contributors)
-
 
 Features
 ========
@@ -47,16 +34,16 @@ Currently, VolumeBar9 is full of features that users have asked for. However, th
 Screenshots
 -----------
 
-<img src="https://raw.githubusercontent.com/cgm616/VolumeBar9/master/screenshots/status+icons.png" alt="status+icons" style="width: 45%;"/>
-<img src="https://raw.githubusercontent.com/cgm616/VolumeBar9/master/screenshots/status+customslider.png" alt="status+customslider" style="width: 45%;"/>
-<img src="https://raw.githubusercontent.com/cgm616/VolumeBar9/master/screenshots/normal+route.png" alt="normal+route" style="width: 45%;"/>
-<img src="https://raw.githubusercontent.com/cgm616/VolumeBar9/master/screenshots/normal+handle+label+icons.png" alt="normal+handle+label+icons" style="width: 45%;"/>
-<img src="https://raw.githubusercontent.com/cgm616/VolumeBar9/master/screenshots/normal+dropshadow.png" alt="normal+dropshadow" style="width: 45%;"/>
-<img src="https://raw.githubusercontent.com/cgm616/VolumeBar9/master/screenshots/normal+crazycolors+handle+label.png" alt="normal+crazycolors+handle+label" style="width: 45%;"/>
-<img src="https://raw.githubusercontent.com/cgm616/VolumeBar9/master/screenshots/landscape+status.png" alt="landscape+status" style="width: 90%;"/>
-<img src="https://raw.githubusercontent.com/cgm616/VolumeBar9/master/screenshots/landscape+normal+customslider.png" alt="landscape+normal+customslider" style="width: 90%;"/>
-<img src="https://raw.githubusercontent.com/cgm616/VolumeBar9/master/screenshots/banner_settings.png" alt="banner_settings" style="width: 45%;"/>
-<img src="https://raw.githubusercontent.com/cgm616/VolumeBar9/master/screenshots/animation_settings.png" alt="animation_settings" style="width: 45%;"/>
+<img src="https://raw.githubusercontent.com/cgm616/VolumeBar9/master/screenshots/status+icons.png" alt="status+icons" style="max-width: 49%;"/>
+<img src="https://raw.githubusercontent.com/cgm616/VolumeBar9/master/screenshots/status+customslider.png" alt="status+customslider" style="max-width: 49%;"/>
+<img src="https://raw.githubusercontent.com/cgm616/VolumeBar9/master/screenshots/normal+route.png" alt="normal+route" style="max-width: 49%;"/>
+<img src="https://raw.githubusercontent.com/cgm616/VolumeBar9/master/screenshots/normal+handle+label+icons.png" alt="normal+handle+label+icons" style="max-width: 49%;"/>
+<img src="https://raw.githubusercontent.com/cgm616/VolumeBar9/master/screenshots/normal+dropshadow.png" alt="normal+dropshadow" style="max-width: 49%;"/>
+<img src="https://raw.githubusercontent.com/cgm616/VolumeBar9/master/screenshots/normal+crazycolors+handle+label.png" alt="normal+crazycolors+handle+label" style="max-width: 49%;"/>
+<img src="https://raw.githubusercontent.com/cgm616/VolumeBar9/master/screenshots/landscape+status.png" alt="landscape+status" style="max-width: 99%;"/>
+<img src="https://raw.githubusercontent.com/cgm616/VolumeBar9/master/screenshots/landscape+normal+customslider.png" alt="landscape+normal+customslider" style="max-width: 99%;"/>
+<img src="https://raw.githubusercontent.com/cgm616/VolumeBar9/master/screenshots/banner_settings.png" alt="banner_settings" style="max-width: 49%;"/>
+<img src="https://raw.githubusercontent.com/cgm616/VolumeBar9/master/screenshots/animation_settings.png" alt="animation_settings" style="max-width: 49%;"/>
 
 
 Install
