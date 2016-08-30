@@ -47,16 +47,16 @@ Currently, VolumeBar9 is full of features that users have asked for. However, th
 Screenshots
 -----------
 
-![status+icons](https://raw.githubusercontent.com/cgm616/VolumeBar9/master/screenshots/status+icons.png)
-![status+customslider](https://raw.githubusercontent.com/cgm616/VolumeBar9/master/screenshots/status+customslider.png)
-![normal+route](https://raw.githubusercontent.com/cgm616/VolumeBar9/master/screenshots/normal+route.png)
-![normal+handle+label+icons](https://raw.githubusercontent.com/cgm616/VolumeBar9/master/screenshots/normal+handle+label+icons.png)
-![normal+dropshadow](https://raw.githubusercontent.com/cgm616/VolumeBar9/master/screenshots/normal+dropshadow.png)
-![normal+crazycolors+handle+label](https://raw.githubusercontent.com/cgm616/VolumeBar9/master/screenshots/normal+crazycolors+handle+label.png)
-![landscape+status](https://raw.githubusercontent.com/cgm616/VolumeBar9/master/screenshots/landscape+status.png)
-![landscape+normal+customslider](https://raw.githubusercontent.com/cgm616/VolumeBar9/master/screenshots/landscape+normal+customslider.png)
-![banner_settings](https://raw.githubusercontent.com/cgm616/VolumeBar9/master/screenshots/banner_settings.png)
-![animation_settings](https://raw.githubusercontent.com/cgm616/VolumeBar9/master/screenshots/animation_settings.png)
+<img src="https://raw.githubusercontent.com/cgm616/VolumeBar9/master/screenshots/status+icons.png" alt="status+icons" style="width: 45%;"/>
+<img src="https://raw.githubusercontent.com/cgm616/VolumeBar9/master/screenshots/status+customslider.png" alt="status+customslider" style="width: 45%;"/>
+<img src="https://raw.githubusercontent.com/cgm616/VolumeBar9/master/screenshots/normal+route.png" alt="normal+route" style="width: 45%;"/>
+<img src="https://raw.githubusercontent.com/cgm616/VolumeBar9/master/screenshots/normal+handle+label+icons.png" alt="normal+handle+label+icons" style="width: 45%;"/>
+<img src="https://raw.githubusercontent.com/cgm616/VolumeBar9/master/screenshots/normal+dropshadow.png" alt="normal+dropshadow" style="width: 45%;"/>
+<img src="https://raw.githubusercontent.com/cgm616/VolumeBar9/master/screenshots/normal+crazycolors+handle+label.png" alt="normal+crazycolors+handle+label" style="width: 45%;"/>
+<img src="https://raw.githubusercontent.com/cgm616/VolumeBar9/master/screenshots/landscape+status.png" alt="landscape+status" style="width: 90%;"/>
+<img src="https://raw.githubusercontent.com/cgm616/VolumeBar9/master/screenshots/landscape+normal+customslider.png" alt="landscape+normal+customslider" style="width: 90%;"/>
+<img src="https://raw.githubusercontent.com/cgm616/VolumeBar9/master/screenshots/banner_settings.png" alt="banner_settings" style="width: 45%;"/>
+<img src="https://raw.githubusercontent.com/cgm616/VolumeBar9/master/screenshots/animation_settings.png" alt="animation_settings" style="width: 45%;"/>
 
 
 Install
