@@ -20,6 +20,7 @@ Table of contents
 - [VolumeBar9](#volumebar9)
 - [Table of contents](#table-of-contents)
 - [Features](#features)
+  - [Screenshots](#screenshots)
 - [Install](#install)
 - [Changelog](#changelog)
 - [License](#license)
@@ -42,6 +43,20 @@ Currently, VolumeBar9 is full of features that users have asked for. However, th
 - Can be dismissed by a easy, user-controlled gesture
 - UI elements automatically change color to maximize contrast
 - Animation and time the banner appears can be customized
+
+Screenshots
+-----------
+
+![status+icons](https://raw.githubusercontent.com/cgm616/VolumeBar9/master/screenshots/status+icons.png)
+![status+customslider](https://raw.githubusercontent.com/cgm616/VolumeBar9/master/screenshots/status+customslider.png)
+![normal+route](https://raw.githubusercontent.com/cgm616/VolumeBar9/master/screenshots/normal+route.png)
+![normal+handle+label+icons](https://raw.githubusercontent.com/cgm616/VolumeBar9/master/screenshots/normal+handle+label+icons.png)
+![normal+dropshadow](https://raw.githubusercontent.com/cgm616/VolumeBar9/master/screenshots/normal+dropshadow.png)
+![normal+crazycolors+handle+label](https://raw.githubusercontent.com/cgm616/VolumeBar9/master/screenshots/normal+crazycolors+handle+label.png)
+![landscape+status](https://raw.githubusercontent.com/cgm616/VolumeBar9/master/screenshots/landscape+status.png)
+![landscape+normal+customslider](https://raw.githubusercontent.com/cgm616/VolumeBar9/master/screenshots/landscape+normal+customslider.png)
+![banner_settings](https://raw.githubusercontent.com/cgm616/VolumeBar9/master/screenshots/banner_settings.png)
+![animation_settings](https://raw.githubusercontent.com/cgm616/VolumeBar9/master/screenshots/animation_settings.png)
 
 
 Install
