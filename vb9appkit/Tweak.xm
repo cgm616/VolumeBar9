@@ -12,14 +12,23 @@
 
 -(id)init {
   [OBJCIPC registerIncomingMessageFromSpringBoardHandlerForMessageName:@"me.cgm616.volumebar9.showing" handler:^NSDictionary *(NSDictionary *message) {
+    UIStatusBarForegroundStyleAttributes *foregroundStyle = nil;
+
     UIStatusBar *statusBar = MSHookIvar<UIStatusBar *>([UIApplication sharedApplication], "_statusBar");
-    UIStatusBarForegroundView *view = MSHookIvar<UIStatusBarForegroundView *>(statusBar, "_foregroundView");
-    view.hidden = YES;
+    if(statusBar) {
+      UIStatusBarForegroundView *view = MSHookIvar<UIStatusBarForegroundView *>(statusBar, "_foregroundView");
+      if(view) {
+        view.hidden = YES;
+      }
 
-    UIStatusBarStyleAttributes *style = MSHookIvar<UIStatusBarStyleAttributes *>(statusBar, "_styleAttributes");
-    UIStatusBarForegroundStyleAttributes *foregroundStyle = MSHookIvar<UIStatusBarForegroundStyleAttributes *>(style, "_foregroundStyle");
+      UIStatusBarStyleAttributes *style = MSHookIvar<UIStatusBarStyleAttributes *>(statusBar, "_styleAttributes");
+      if(style) {
+        foregroundStyle = MSHookIvar<UIStatusBarForegroundStyleAttributes *>(style, "_foregroundStyle");
+      }
+    }
 
-    UIColor *foregroundColor = [foregroundStyle tintColor];
+    UIColor *foregroundColor = foregroundStyle ? [foregroundStyle tintColor] : [UIColor blackColor];
+
     CGFloat hue, saturation, brightness, alpha;
     [foregroundColor getHue:&hue saturation:&saturation brightness:&brightness alpha:&alpha];
 
@@ -33,8 +42,12 @@
 
   [OBJCIPC registerIncomingMessageFromSpringBoardHandlerForMessageName:@"me.cgm616.volumebar9.hiding" handler:^NSDictionary *(NSDictionary *message) {
     UIStatusBar *statusBar = MSHookIvar<UIStatusBar *>([UIApplication sharedApplication], "_statusBar");
-    UIStatusBarForegroundView *view = MSHookIvar<UIStatusBarForegroundView *>(statusBar, "_foregroundView");
-    view.hidden = NO;
+    if(statusBar) {
+      UIStatusBarForegroundView *view = MSHookIvar<UIStatusBarForegroundView *>(statusBar, "_foregroundView");
+      if(view) {
+        view.hidden = NO;
+      }
+    }
 
 	  return nil;
   }];
