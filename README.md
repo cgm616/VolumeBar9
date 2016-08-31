@@ -67,6 +67,9 @@ Every new update pushed on my Cydia repo is also tagged and signed, which can be
 
 These tags have small descriptions of changes, which are also copied below. Longer versions can be found on the GitHub [releases page](https://github.com/cgm616/VolumeBar9/releases).
 
+- [v0.3.4-beta](https://github.com/cgm616/VolumeBar9/releases/tag/v0.3.4-beta) | August 31, 2016
+  - Fix Springboard crash when apps are opening, see GitHub issue [#9](https://github.com/cgm616/VolumeBar9/issues/9)
+  - Fix app crash when apps are opening, see GitHub issue [#7](https://github.com/cgm616/VolumeBar9/issues/7)
 - [v0.3.3-beta](https://github.com/cgm616/VolumeBar9/releases/tag/v0.3.3-beta) | August 29, 2016
   - Fix package depiction to point to the correct place
   - Add new method of updating depictions from README.md
