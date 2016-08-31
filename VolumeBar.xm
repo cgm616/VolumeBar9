@@ -36,9 +36,8 @@
   if(hide != nil) {
     [hide invalidate];
     hide = nil;
+    hide = [NSTimer scheduledTimerWithTimeInterval:_delayTime target:self selector:@selector(_hideHUD) userInfo:nil repeats:NO];
   }
-
-  hide = [NSTimer scheduledTimerWithTimeInterval:_delayTime target:self selector:@selector(_hideHUD) userInfo:nil repeats:NO];
 }
 
 -(void)_swipeHandler:(UITapGestureRecognizer *)gestureRecognizer { // stops hide timer and calls _hideHUD when swiped
