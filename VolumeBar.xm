@@ -182,15 +182,13 @@
   }
   if(_sliderColorEnabled) {
     if(_adaptive) {
-      [[UISlider appearanceWhenContainedInInstancesOfClasses:@[[GMPVolumeView class]]] setMinimumTrackTintColor:_statusBarForegroundColor];
+      [[volumeSlider volumeSlider] setMinimumTrackTintColor:_statusBarForegroundColor];
     } else {
-      [[UISlider appearanceWhenContainedInInstancesOfClasses:@[[GMPVolumeView class]]] setMinimumTrackTintColor:_minColor];
+      [[volumeSlider volumeSlider] setMinimumTrackTintColor:_minColor];
     }
-    [[UISlider appearanceWhenContainedInInstancesOfClasses:@[[GMPVolumeView class]]] setMaximumTrackTintColor:_maxColor];
-  } else {
-    [[UISlider appearanceWhenContainedInInstancesOfClasses:@[[GMPVolumeView class]]] setMinimumTrackTintColor:nil];
-    [[UISlider appearanceWhenContainedInInstancesOfClasses:@[[GMPVolumeView class]]] setMaximumTrackTintColor:nil];
+    [[volumeSlider volumeSlider] setMaximumTrackTintColor:_maxColor];
   }
+  
   volumeSlider.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 
   UIImage *minimum;
