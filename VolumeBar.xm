@@ -20,6 +20,8 @@
 @synthesize blur = _blur;
 @synthesize drop = _drop;
 @synthesize icon = _icon;
+@synthesize adaptive = _adaptive;
+@synthesize statusBarForegroundColor = _statusBarForegroundColor;
 @synthesize statusBar = _statusBar;
 @synthesize gesture = _gesture;
 @synthesize slideHandle = _slideHandle;
@@ -179,7 +181,11 @@
     [volumeSlider setVolumeThumbImage:thumbImage forState:UIControlStateNormal];
   }
   if(_sliderColorEnabled) {
-    [[UISlider appearanceWhenContainedInInstancesOfClasses:@[[GMPVolumeView class]]] setMinimumTrackTintColor:_minColor];
+    if(_adaptive) {
+      [[UISlider appearanceWhenContainedInInstancesOfClasses:@[[GMPVolumeView class]]] setMinimumTrackTintColor:_statusBarForegroundColor];
+    } else {
+      [[UISlider appearanceWhenContainedInInstancesOfClasses:@[[GMPVolumeView class]]] setMinimumTrackTintColor:_minColor];
+    }
     [[UISlider appearanceWhenContainedInInstancesOfClasses:@[[GMPVolumeView class]]] setMaximumTrackTintColor:_maxColor];
   } else {
     [[UISlider appearanceWhenContainedInInstancesOfClasses:@[[GMPVolumeView class]]] setMinimumTrackTintColor:nil];

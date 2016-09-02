@@ -4,7 +4,6 @@
 <dict>
 	<key>items</key>
   <array>
-
 		<dict>
 			<key>cell</key>
 			<string>PSGroupCell</string>
@@ -71,7 +70,7 @@
 			<key>label</key>
 			<string>Slider Color and Blur</string>
 			<key>footerText</key>
-			<string>Set custom colors for the track on the slider. Minimum is defaulted as blue and maximum is defaulted as grey.</string>
+			<string>Set custom colors for the track on the slider. Minimum is defaulted as blue and maximum is defaulted as grey. When adaptive colors are enabled, the slider minimum is set as the color of the foreground text on the status bar. This mimics the look of tweaks like StatusVolX, provided the banner color is set to fully transparent. Custom colors need to be enabled for adaptive colors to work.</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -82,6 +81,20 @@
 			<string>sliderColorEnabled</string>
 			<key>label</key>
 			<string>Custom Slider Colors</string>
+			<key>default</key>
+			<false/>
+			<key>PostNotification</key>
+			<string>me.cgm616.volumebar9/preferences.changed</string>
+		</dict>
+    <dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>defaults</key>
+			<string>me.cgm616.volumebar9</string>
+			<key>key</key>
+			<string>adaptive</string>
+			<key>label</key>
+			<string>Adaptive Slider Colors</string>
 			<key>default</key>
 			<false/>
 			<key>PostNotification</key>

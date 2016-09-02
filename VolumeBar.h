@@ -54,6 +54,8 @@
 @property (nonatomic) BOOL blur;
 @property (nonatomic) BOOL drop;
 @property (nonatomic) BOOL icon;
+@property (nonatomic) BOOL adaptive;
+@property (nonatomic, strong) UIColor *statusBarForegroundColor;
 @property (nonatomic) BOOL statusBar;
 @property (nonatomic) BOOL gesture;
 @property (nonatomic) BOOL slideHandle;

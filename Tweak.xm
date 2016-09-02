@@ -16,6 +16,7 @@ static BOOL showRouteButton;
 static BOOL blur;
 static BOOL drop;
 static BOOL icon;
+static BOOL adaptive;
 static BOOL statusBar;
 static BOOL gesture;
 static BOOL slideHandle;
@@ -68,6 +69,9 @@ static void preferenceUpdate(CFNotificationCenterRef center, void *observer, CFS
 
   key = preferences[@"icon"];
   icon = key ? [key boolValue] : 1;
+
+  key = preferences[@"adaptive"];
+  adaptive = key ? [key boolValue] : 0;
 
 	key = preferences[@"statusBar"];
 	statusBar = key ? [key boolValue] : 0;
@@ -137,6 +141,9 @@ static void preferenceUpdate(CFNotificationCenterRef center, void *observer, CFS
       NSDictionary *reply = [OBJCIPC sendMessageToAppWithIdentifier:appID messageName:@"me.cgm616.volumebar9.showing" dictionary:nil];
       startOrientation = [reply[@"currentOrientation"] longLongValue];
       brightness = [reply[@"foregroundBrightness"] floatValue];
+      hue = [reply[@"foregroundHue"] floatValue];
+      saturation = [reply[@"foregroundSaturation"] floatValue];
+      alpha = [reply[@"foregroundAlpha"] floatValue];
     } else {
       UIStatusBar *statusBar = MSHookIvar<UIStatusBar *>([UIApplication sharedApplication], "_statusBar");
       UIStatusBarForegroundView *view = MSHookIvar<UIStatusBarForegroundView *>(statusBar, "_foregroundView");
@@ -160,6 +167,8 @@ static void preferenceUpdate(CFNotificationCenterRef center, void *observer, CFS
   	vbar.blur = blur;
   	vbar.drop = drop;
     vbar.icon = icon;
+    vbar.adaptive = adaptive;
+    vbar.statusBarForegroundColor = [UIColor colorWithHue:hue saturation:saturation brightness:brightness alpha:alpha];
   	vbar.statusBar = statusBar;
   	vbar.gesture = gesture;
     vbar.slideHandle = slideHandle;

@@ -35,6 +35,9 @@
     NSDictionary *return_message = @{
       @"currentOrientation" : [NSNumber numberWithLongLong:[[UIApplication sharedApplication] statusBarOrientation]],
       @"foregroundBrightness" : [NSNumber numberWithFloat:brightness],
+      @"foregroundHue" : [NSNumber numberWithFloat:hue],
+      @"foregroundSaturation" : [NSNumber numberWithFloat:saturation],
+      @"foregroundAlpha" : [NSNumber numberWithFloat:alpha],
     };
 
 	  return return_message;
