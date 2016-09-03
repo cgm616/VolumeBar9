@@ -11,17 +11,29 @@
 @implementation GMPVolumeView // new implementation of MPVolumeView to fix positioning issues
 
 -(CGRect)volumeSliderRectForBounds:(CGRect)bounds {
-    CGRect newBounds=[super volumeSliderRectForBounds:bounds];
-    newBounds.origin.y=bounds.origin.y;
-    newBounds.size.height=bounds.size.height;
-    return newBounds;
+  CGRect newBounds=[super volumeSliderRectForBounds:bounds];
+  newBounds.origin.y=bounds.origin.y;
+  newBounds.size.height=bounds.size.height;
+  return newBounds;
 }
 
 -(CGRect)routeButtonRectForBounds:(CGRect)bounds {
-    CGRect newBounds=[super routeButtonRectForBounds:bounds];
-    newBounds.origin.y=bounds.origin.y;
-    newBounds.size.height=bounds.size.height;
-    return newBounds;
+  CGRect newBounds=[super routeButtonRectForBounds:bounds];
+  newBounds.origin.y=bounds.origin.y;
+  newBounds.size.height=bounds.size.height;
+  return newBounds;
+}
+
+-(void)layoutSubviews {
+  [super layoutSubviews];
+  [self recursiveRemoveAnimationsOnView:self];
+}
+
+-(void)recursiveRemoveAnimationsOnView:(UIView *)view {
+  [view.layer removeAllAnimations];
+  for (UIView *subview in view.subviews) {
+    [self recursiveRemoveAnimationsOnView:subview];
+  }
 }
 
 @end
