@@ -230,6 +230,13 @@
     [volumeSlider volumeSlider].maximumValueImage = [maximum scaleImageToSize:maxSize alpha:1.0];
   }
 
+  if(_showRouteButton) {
+    UIButton *routeButton = [volumeSlider _routeButton];
+    UIImage *routeImage = [routeButton imageForState:UIControlStateNormal];
+    [routeButton setImage:[routeImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
+    routeButton.tintColor = [UIColor colorWithRed:brightness green:brightness blue:brightness alpha:1.0];
+  }
+
   [mainView addSubview:volumeSlider];
 
   if(_slideHandle && !_statusBar) { // set up swipe handler and create handle view, add to mainView
