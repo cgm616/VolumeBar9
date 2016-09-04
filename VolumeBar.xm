@@ -209,8 +209,15 @@
     minSize = CGSizeMake(14, 14);
   }
 
+  BOOL bannerBackgroundBright = NO;
+  if(!_blur) {
+    CGFloat hue, saturation, brightness, alpha;
+    [_color getHue:&hue saturation:&saturation brightness:&brightness alpha:&alpha];
+    bannerBackgroundBright = (brightness * alpha) > 0.5;
+  }
+  BOOL statusForegroundBright = _statusBrightness > 0.5;
   CGFloat brightness;
-  if(_statusBrightness > 0.5) {
+  if(statusForegroundBright && !(bannerBackgroundBright && !_blur)) {
     brightness = 1.0;
     minimum = [minimum invertImage];
     maximum = [maximum invertImage];
