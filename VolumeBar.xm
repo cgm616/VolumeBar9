@@ -226,15 +226,15 @@
   }
 
   if(_icon) {
-    [volumeSlider volumeSlider].minimumValueImage = [minimum scaleImageToSize:minSize alpha:0.5];
-    [volumeSlider volumeSlider].maximumValueImage = [maximum scaleImageToSize:maxSize alpha:0.5];
+    [volumeSlider volumeSlider].minimumValueImage = [minimum scaleImageToSize:minSize alpha:1.0];
+    [volumeSlider volumeSlider].maximumValueImage = [maximum scaleImageToSize:maxSize alpha:1.0];
   }
 
   [mainView addSubview:volumeSlider];
 
   if(_slideHandle && !_statusBar) { // set up swipe handler and create handle view, add to mainView
     handle = [[UIView alloc] initWithFrame:CGRectMake((screenWidth / 2) - 16, bannerHeight - 10, 32, 8)];
-    [handle setBackgroundColor:[UIColor colorWithRed:brightness green:brightness blue:brightness alpha:0.5]];
+    [handle setBackgroundColor:[UIColor colorWithRed:brightness green:brightness blue:brightness alpha:1.0]];
     handle.layer.cornerRadius = 4;
     handle.layer.masksToBounds = YES;
     [mainView addSubview:handle];
@@ -244,7 +244,7 @@
     label = [[UILabel alloc] initWithFrame:CGRectMake(bannerX, bannerY + 2, bannerWidth, sliderY)];
     [label setBackgroundColor:[UIColor clearColor]];
     label.text = [_view mode] == 1 ? @"Ringer" : @"Player";
-    label.textColor = [UIColor colorWithRed:brightness green:brightness blue:brightness alpha:0.5];
+    label.textColor = [UIColor colorWithRed:brightness green:brightness blue:brightness alpha:1.0];
     label.textAlignment = NSTextAlignmentCenter;
     label.font = [UIFont systemFontOfSize:12];
     [mainView addSubview:label];
