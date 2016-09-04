@@ -67,6 +67,13 @@ Every new update pushed on my Cydia repo is also tagged and signed, which can be
 
 These tags have small descriptions of changes, which are also copied below. Longer versions can be found on the GitHub [releases page](https://github.com/cgm616/VolumeBar9/releases).
 
+- [v0.4.0-beta](https://github.com/cgm616/VolumeBar9/releases/tag/v0.3.5-beta) | September 3, 2016
+  - Add adaptive slider color setting, see GitHub issue [#2](https://github.com/cgm616/VolumeBar9/issues/2)
+  - Fix icons sometimes not showing correctly, see GitHub issue [#12](https://github.com/cgm616/VolumeBar9/issues/12)
+  - Remove slide in animation on slider, see GitHub issue [#13](https://github.com/cgm616/VolumeBar9/issues/13)
+  - Fix orientation problem on SpringBoard and iPad, see GitHub issue [#5](https://github.com/cgm616/VolumeBar9/issues/5)
+  - Fix UI colors on custom white backgrounds
+  - Change route button color with other UI, see GitHub issue [#15](https://github.com/cgm616/VolumeBar9/issues/15)
 - [v0.3.4-beta](https://github.com/cgm616/VolumeBar9/releases/tag/v0.3.4-beta) | August 31, 2016
   - Fix Springboard crash when apps are opening, see GitHub issue [#9](https://github.com/cgm616/VolumeBar9/issues/9)
   - Fix app crash when apps are opening, see GitHub issue [#7](https://github.com/cgm616/VolumeBar9/issues/7)
