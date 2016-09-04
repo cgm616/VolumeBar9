@@ -102,9 +102,10 @@
 }
 
 -(void)_calculateRender { // does frame calculations and creates thumbImage
-  CGRect screenRect = [[UIScreen mainScreen] bounds];
-  screenWidth = screenRect.size.width;
-  screenHeight = screenRect.size.height;
+  CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+  screenSize = CGSizeMake(MIN(screenSize.width, screenSize.height), MAX(screenSize.width, screenSize.height));
+  screenWidth = screenSize.width;
+  screenHeight = screenSize.height;
 
   bannerX = 0;
   bannerWidth = screenWidth;
