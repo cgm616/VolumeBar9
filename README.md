@@ -67,7 +67,9 @@ Every new update pushed on my Cydia repo is also tagged and signed, which can be
 
 These tags have small descriptions of changes, which are also copied below. Longer versions can be found on the GitHub [releases page](https://github.com/cgm616/VolumeBar9/releases).
 
-- [v0.4.0-beta](https://github.com/cgm616/VolumeBar9/releases/tag/v0.3.5-beta) | September 3, 2016
+- [v0.4.1-beta](https://github.com/cgm616/VolumeBar9/releases/tag/v0.4.1-beta) | September 7, 2016
+  - Add logging to debug a crash, see GitHub issue [#1](https://github.com/cgm616/VolumeBar9/issues/1)
+- [v0.4.0-beta](https://github.com/cgm616/VolumeBar9/releases/tag/v0.4.0-beta) | September 3, 2016
   - Add adaptive slider color setting, see GitHub issue [#2](https://github.com/cgm616/VolumeBar9/issues/2)
   - Fix icons sometimes not showing correctly, see GitHub issue [#12](https://github.com/cgm616/VolumeBar9/issues/12)
   - Remove slide in animation on slider, see GitHub issue [#13](https://github.com/cgm616/VolumeBar9/issues/13)
