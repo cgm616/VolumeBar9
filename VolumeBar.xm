@@ -35,11 +35,19 @@
 @synthesize completion = _completion;
 
 -(void)resetTimer {
+  HBLogInfo(@"resetTimer called");
   if(hide != nil) {
+    HBLogInfo(@"hide isn't nil, inside if statement");
     [hide invalidate];
+    HBLogInfo(@"hide invalidated");
     hide = nil;
+    HBLogInfo(@"hide is now nil")
     hide = [NSTimer scheduledTimerWithTimeInterval:_delayTime target:self selector:@selector(_hideHUD) userInfo:nil repeats:NO];
+    HBLogInfo(@"hide is recreated");
+  } else {
+    HBLogInfo(@"hide is nil, not recreating");
   }
+  HBLogInfo(@"resetTimer finished");
 }
 
 -(void)_swipeHandler:(UITapGestureRecognizer *)gestureRecognizer { // stops hide timer and calls _hideHUD when swiped
